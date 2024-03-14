@@ -1,0 +1,134 @@
+
+/* ----- // ESTILOS GENERALES // ----- */
+
+.container-projects {
+    margin: 200px auto;
+    padding: 0 50px;
+    user-select: none;
+
+}
+
+/* ----- // TEXTOS // ----- */
+
+.projects-title {
+    text-shadow: 0px 0px 6px #b8d0ff;
+}
+
+/* ----- // CARRUSEL // ----- */
+
+.container-carousel {
+    margin: 50px 20px 0px;
+}
+
+.container-img-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-carousel {
+    height: auto;
+    width: 25%;
+    margin: 12px 20px;
+    box-shadow: 0px 0px 8px #b8d0ff;
+}
+
+.img-carousel:hover {
+    box-shadow: 0px 0px 15px #b8d0ff;
+    transition: .3s;
+    margin: 15px 25px;
+    width: 26%;
+}
+
+.img-carousel:not(:hover) {
+    transition: .3s;
+}
+
+.carousel-button {
+    color: white;
+    font-size: 40px;
+    text-shadow: 0px 0px 15px #b8d0ff;
+    margin-bottom: 90px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    top: 100%;
+    margin-top: 30px;
+}
+
+.carousel-caption {
+    position: relative;
+    left: 0%;
+    bottom: -15px;
+}
+
+/* ----- // MEDIA QUERIES // ----- */
+
+@media screen and (min-width: 1600px) {
+    .container-projects {
+        margin: 350px auto;
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .container-projects {
+        padding: 0px;
+    }
+
+    .carousel-button--left {
+        margin-right: 20px;
+    }
+
+    .carousel-button--right {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .container-img-carousel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .img-carousel {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .img-carousel {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .img-carousel {
+        width: 60%;
+    }
+
+    .carousel-button {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .img-carousel {
+        width: 80%;
+    }
+
+    .carousel-button {
+        margin-bottom: 120px;
+    }
+
+    .carousel-button--left {
+        margin-right: 40px;
+    }
+
+    .carousel-button--right {
+        margin-left: 40px;
+    }
+}
