@@ -1,4 +1,5 @@
 
+/* ----- // ESTILOS GENERALES // ----- */
 
 body {
     height: 100%;
@@ -23,13 +24,14 @@ body {
 /* ----- // MENÚ // ----- */
 
 .menu {
-    position: absolute;
+    position: fixed;
     top: 8%;
     right: 6%;
     display: flex;
     justify-content: center;
     align-items: center;
     user-select: none;
+    z-index: 1;
 }
 
 .menu:not(:hover) {
@@ -37,9 +39,15 @@ body {
 }
 
 .cambiar-esp {
-    font-size: 50px;
+    font-size: 40px;
     margin: 0;
     margin-right: 30px;
+    user-select: none;
+}
+
+.cambiar-esp:hover {
+    text-shadow: 0px 0px 5px #b8d0ff;
+    transition: .5s;
 }
 
 .cambiar-esp:not(:hover) {
@@ -47,25 +55,21 @@ body {
 }
 
 .ver-mas-menu {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .ver-mas-menu:hover {
-    transform: scale(0.95);
+    transform: scale(0.95);    
+    filter: drop-shadow(0px 0px 3px #b8d0ff);
     transition: .5s;
-  }
+}
 
 .ver-mas-menu:not(:hover) {
     transition: 1s;
 }
 
 @media screen and (max-width: 1150px) {
-    .ver-mas-menu {
-        width: 40px;
-        height: 40px;
-    }
-
     .cambiar-esp {
         font-size: 35px;
         margin-right: 20px;
@@ -75,6 +79,7 @@ body {
 @media screen and (max-width: 700px) {
     .menu {
         top: 5%;
+        opacity: 50%;
     }
     
     .cambiar-esp {
