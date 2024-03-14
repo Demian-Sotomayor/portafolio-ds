@@ -1,0 +1,127 @@
+.container-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.posicion-obj-home {
+  position: relative;
+  left: -20%;
+}
+
+/* ----- // TEXTOS DE HOME // ----- */
+.textos-hero {
+  margin-top: 90px;
+  font-weight: 700;
+  font-size: 55px;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #b8d0ff;
+  user-select: none;
+}
+
+.textos-hero:not(:hover) {
+    transition: 1s;
+}
+
+.textos-hero p {
+  margin: 0;
+}
+
+.textos-hero p:nth-last-of-type(1) {
+  text-shadow: -3px -3px 1px rgba(76, 120, 202, 0.5);
+  color: #b8d0ff;
+  -webkit-text-stroke-color: transparent;
+}
+
+/* ----- // BOTÓN CONTACTO // ----- */
+
+.btn-contact {
+  margin-top: 60px;
+  padding: 10px 30px;
+  font-size: 25px;
+  border: 1px solid #b8d0ff;
+  background: transparent;
+  color: white;
+  box-shadow: 0px 0px 8px #b8d0ff;
+  user-select: none;
+}
+
+.btn-contact:hover {
+  box-shadow: 0px 0px 18px #b8d0ff;
+  transition: 1s;
+  background: rgb(44, 48, 60);
+}
+
+.btn-contact:not(:hover) {
+    transition: 1s;
+}
+
+/* ----- // MEDIA QUERIES // ----- */
+
+/* arreglo para pantallas más grandes que 1920x1080 */
+@media screen and (min-width: 1600px) {
+  .posicion-obj-home {
+    left: -25%;
+  }
+
+  .textos-hero {
+    margin-top: 120px;
+  }
+
+  .btn-contact {
+    margin-top: 120px;
+  }
+  /* 
+Tenía problemas con la visualización en monitor con más resolución comparado a la pantalla de 1920x1080, con min-width de 1500px 
+a veces me rompía el diseño de la pantalla de dicha resolución, pero vi que a partir de 1600 ya no hay ningún tipo de problema 
+con resoluciones más grandes en navegador, no me chocan los cambios que hago y se me ve bien en ambas pantallas.
+*/
+}
+
+@media screen and (max-width: 1150px) {
+    .posicion-obj-home {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+  .textos-hero {
+    margin-left: 0;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .btn-contact {
+    width: 50%;
+    margin: 60px auto 0px;
+  }
+}
+
+/* Breakpoint por quisquilloso */
+@media screen and (max-width: 700px) {
+    .textos-hero {
+      font-size: 45px;
+    }
+
+    .btn-contact {
+        font-size: 20px;
+        padding: 10px;
+      }
+  }
+
+@media screen and (max-width: 480px) {
+  .textos-hero {
+    font-size: 35px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .btn-contact {
+    width: 90%;
+    padding: 10px 0;
+  }
+}
