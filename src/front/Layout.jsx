@@ -6,13 +6,13 @@ const Layout = () => {
     const basename = "/"
 
   return (
-    <div>
+    <>
         <BrowserRouter basename={basename}>
             <Routes>
                 <Route element={<App />} path='/' />
             </Routes>
         </BrowserRouter>
-    </div>
+    </>
   )
 }
 
