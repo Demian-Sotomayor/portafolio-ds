@@ -21,7 +21,7 @@
   font-size: 55px;
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #b8d0ff;
+  -webkit-text-stroke-color: var(--light-color);
 }
 
 .textos-hero:not(:hover) {
@@ -44,20 +44,88 @@
   margin-top: 60px;
   padding: 10px 30px;
   font-size: 25px;
-  border: 1px solid #b8d0ff;
+  border: 1px solid var(--light-color);
   background: transparent;
   color: white;
-  box-shadow: 0px 0px 8px #b8d0ff;
+  box-shadow: 0px 0px 8px var(--light-color);
 }
 
 .btn-contact:hover {
-  box-shadow: 0px 0px 18px #b8d0ff;
+  box-shadow: 0px 0px 18px var(--light-color);
   transition: 1s;
   background: rgb(44, 48, 60);
 }
 
 .btn-contact:not(:hover) {
     transition: 1s;
+}
+
+/* ----- // MODAL CONTACTO // ----- */
+
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content {
+  margin: 0 auto;
+  background: var(--main-bg-color);
+  box-shadow: 0px 0px 12px var(--light-color);
+  min-width: 50vw;
+  height: auto;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+}
+
+.icon-close-modal {
+  color: white;
+  font-size: 30px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 15px;
+  border: none;
+}
+
+.icon-close-modal:hover {
+  filter: drop-shadow(0px 0px 5px var(--light-color));
+  transition: .5s;
+}
+
+.icon-close-modal:not(:hover) {
+  transition: 1s;
+}
+
+.icon-contact {
+  color: var(--light-color);
+  font-size: 40px;
+}
+
+.icon-contact:hover {
+  filter: drop-shadow(0px 0px 3px var(--light-color));
+  transition: .5s;
+}
+
+.icon-contact:not(:hover) {
+  transition: 1s;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px 20px 50px;
+}
+
+.social-name {
+  margin: auto 15px;
+}
+
+.advice-modal {
+  opacity: 25%;
+  text-align: right;
+  margin-right: 15px;
 }
 
 /* ----- // MEDIA QUERIES // ----- */
@@ -125,5 +193,23 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
   .btn-contact {
     width: 90%;
     padding: 10px 0;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+  }
+
+  .social-name {
+    margin: 15px 0px 0px;
+  }
+
+  .advice-modal {
+    text-align: center;
+    margin-top: 25px;
   }
 }

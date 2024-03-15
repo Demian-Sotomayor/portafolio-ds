@@ -3,6 +3,7 @@ import About from "./About";
 import Home from "./Home";
 import verMas from "../../../assets/ver-mas.svg";
 import Projects from "./Projects";
+import Footer from "./Footer";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Home />
         <About />
         <Projects />
+        <Footer/>
       </div>
     </>
   );

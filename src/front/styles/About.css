@@ -10,7 +10,7 @@
 /* ----- // TEXTOS // ----- */
 
 .about-title {
-    text-shadow: 0px 0px 6px #b8d0ff;
+    text-shadow: 0px 0px 6px var(--light-color);
 }
 
 .about-title:not(:hover) {
@@ -35,11 +35,11 @@
 .demian-profile {
     width: 300px;
     height: 300px;
-    box-shadow: 0px 0px 10px #b8d0ff;
+    box-shadow: 0px 0px 10px var(--light-color);
 }
 
 .demian-profile:hover {
-    box-shadow: 0px 0px 15px #b8d0ff;
+    box-shadow: 0px 0px 15px var(--light-color);
     transition: .5s;
 }
 
@@ -56,9 +56,10 @@
 
 /* ----- // MEDIA QUERIES // ----- */
 
+/* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
     .container-about {
-        margin: 400px auto;
+        margin: 350px auto 300px;
         padding: 0 50px;
     }
 

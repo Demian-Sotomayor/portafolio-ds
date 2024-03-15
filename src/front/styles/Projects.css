@@ -11,7 +11,7 @@
 /* ----- // TEXTOS // ----- */
 
 .projects-title {
-    text-shadow: 0px 0px 6px #b8d0ff;
+    text-shadow: 0px 0px 6px var(--light-color);
 }
 
 /* ----- // CARRUSEL // ----- */
@@ -30,11 +30,11 @@
     height: auto;
     width: 25%;
     margin: 12px 20px;
-    box-shadow: 0px 0px 8px #b8d0ff;
+    box-shadow: 0px 0px 8px var(--light-color);
 }
 
 .img-carousel:hover {
-    box-shadow: 0px 0px 15px #b8d0ff;
+    box-shadow: 0px 0px 15px var(--light-color);
     transition: .3s;
     margin: 15px 25px;
     width: 26%;
@@ -47,7 +47,7 @@
 .carousel-button {
     color: white;
     font-size: 40px;
-    text-shadow: 0px 0px 15px #b8d0ff;
+    text-shadow: 0px 0px 15px var(--light-color);
     margin-bottom: 90px;
 }
 
@@ -65,10 +65,11 @@
 
 /* ----- // MEDIA QUERIES // ----- */
 
+/* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
     .container-projects {
-        margin: 350px auto;
-        padding: 0 50px;
+        margin: 100px auto 250px;
+        padding: 0px 50px;
     }
 }
 
