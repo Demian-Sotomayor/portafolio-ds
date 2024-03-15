@@ -1,11 +1,16 @@
 
 /* ----- // ESTILOS GENERALES // ----- */
 
+:root {
+    --main-bg-color: #23252C;
+    --light-color: #b8d0ff;
+}
+
 body {
     height: 100%;
     margin: 0;
     color: white;
-    background: #23252C;
+    background: var(--main-bg-color);
     font-family: 'Libre Baskerville';
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
@@ -46,7 +51,7 @@ body {
 }
 
 .cambiar-esp:hover {
-    text-shadow: 0px 0px 5px #b8d0ff;
+    text-shadow: 0px 0px 5px var(--light-color);
     transition: .5s;
 }
 
@@ -61,7 +66,7 @@ body {
 
 .ver-mas-menu:hover {
     transform: scale(0.95);    
-    filter: drop-shadow(0px 0px 3px #b8d0ff);
+    filter: drop-shadow(0px 0px 3px var(--light-color));
     transition: .5s;
 }
 

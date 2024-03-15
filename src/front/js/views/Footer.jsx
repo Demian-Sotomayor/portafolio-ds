@@ -1,7 +1,10 @@
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className="container-fluid">
+      <h1>footer</h1>
+
+    </div>
   )
 }
 
