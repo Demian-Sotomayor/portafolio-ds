@@ -103,6 +103,15 @@
   font-size: 40px;
 }
 
+.icon-contact:hover {
+  filter: drop-shadow(0px 0px 3px var(--light-color));
+  transition: .5s;
+}
+
+.icon-contact:not(:hover) {
+  transition: 1s;
+}
+
 .social {
   display: flex;
   align-items: center;
@@ -111,6 +120,12 @@
 
 .social-name {
   margin: auto 15px;
+}
+
+.advice-modal {
+  opacity: 25%;
+  text-align: right;
+  margin-right: 15px;
 }
 
 /* ----- // MEDIA QUERIES // ----- */
@@ -191,5 +206,10 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
 
   .social-name {
     margin: 15px 0px 0px;
+  }
+
+  .advice-modal {
+    text-align: center;
+    margin-top: 25px;
   }
 }

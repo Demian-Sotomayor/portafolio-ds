@@ -56,6 +56,7 @@
 
 /* ----- // MEDIA QUERIES // ----- */
 
+/* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
     .container-about {
         margin: 350px auto 300px;

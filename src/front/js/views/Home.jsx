@@ -77,6 +77,7 @@ const Home = () => {
                     demian-sotomayor-urrutia
                   </h5>
                 </div>
+                <h6 className="advice-modal">(You can click on some icons)</h6>
               </div>
             </div>
           </div>
