@@ -13,9 +13,6 @@
     text-shadow: 0px 0px 6px var(--light-color);
 }
 
-.about-title:not(:hover) {
-    transition: 1s;
-}
 
 .about-texts {
     margin-top: 30px;
@@ -23,10 +20,6 @@
     word-spacing: 5px;
     width: 65%;
     text-align: justify; 
-}
-
-.about-texts:not(:hover) {
-    transition: 1s;
 }
 
 
@@ -41,10 +34,6 @@
 .demian-profile:hover {
     box-shadow: 0px 0px 15px var(--light-color);
     transition: .5s;
-}
-
-.demian-profile:not(:hover) {
-    transition: 1s;
 }
 
 .img-container {

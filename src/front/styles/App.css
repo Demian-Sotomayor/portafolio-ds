@@ -6,6 +6,20 @@
     --light-color: #b8d0ff;
 }
 
+:root::-webkit-scrollbar {
+    width: 30px; 
+}
+
+:root::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+:root::-webkit-scrollbar-thumb {
+    background-image: url('../../assets/Rectangle.svg'); 
+    background-repeat: no-repeat, no-repeat;
+    background-size: 30px; 
+}
+
 body {
     height: 100%;
     margin: 0;
@@ -15,6 +29,8 @@ body {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    scroll-behavior: smooth;
+    overflow: transparent;
 }
 
 @keyframes fadeInAnimation {
@@ -24,6 +40,11 @@ body {
     100% {
         opacity: 1;
     }
+}
+
+/* Recién se me ocurrió después añadir esto en general */
+*:not(:hover) {
+    transition: .5s;
 }
 
 /* ----- // MENÚ // ----- */
@@ -39,9 +60,6 @@ body {
     z-index: 1;
 }
 
-.menu:not(:hover) {
-    transition: 1s;
-}
 
 .cambiar-esp {
     font-size: 40px;
@@ -55,10 +73,6 @@ body {
     transition: .5s;
 }
 
-.cambiar-esp:not(:hover) {
-    transition: 1s;
-}
-
 .ver-mas-menu {
     width: 40px;
     height: 40px;
@@ -68,10 +82,6 @@ body {
     transform: scale(0.95);    
     filter: drop-shadow(0px 0px 3px var(--light-color));
     transition: .5s;
-}
-
-.ver-mas-menu:not(:hover) {
-    transition: 1s;
 }
 
 @media screen and (max-width: 1150px) {

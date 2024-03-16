@@ -1,2 +1,157 @@
 
 /* ----- // ESTILOS GENERALES // ----- */
+
+.container-footer {
+    margin: 300px auto 0px;
+    user-select: none;
+}
+
+.container-footer p {
+    font-size: 18px;
+    opacity: 90%;
+}
+
+.container-copyright-social-footer {
+    margin-top: 10px;
+    padding: 0px 120px 0px 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ----- // CONTACT FOOTER // ----- */
+
+.footer-title {
+    text-shadow: 0px 0px 4px var(--light-color);
+}
+
+.icon-contact-footer {
+    color: var(--light-color);
+    font-size: 50px;
+    margin: 0px 10px;
+}
+
+.icon-contact-footer:hover {
+    filter: drop-shadow(0px 0px 3px var(--light-color));
+    transition: .5s;
+  }
+
+.texts-footer-social {
+    margin-left: 16px;
+    user-select: text;
+}
+
+.email-footer {
+    margin-bottom: 45px;
+}
+
+/* ----- // LINEAS FOOTER // ----- */
+
+.line1and2 {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.line3-footer {
+    width: 90%;
+    margin-top: 80px;
+}
+
+/* ----- // MEDIA QUERIES // ----- */
+
+/* arreglo para pantallas más grandes que 1920x1080 */
+@media screen and (min-width: 1600px) {
+    
+    .container-footer {
+        margin: 400px auto 0px;
+    }
+
+    .container-copyright-social-footer {
+        margin-top: 20px;
+        padding: 0px 120px 0px 120px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .line3-footer {
+        width: 90%;
+        margin-top: 150px;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .icon-contact-footer {
+        font-size: 40px;
+    }
+
+    .copyright {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .container-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .container-contact-footer {
+        margin: 0 auto;
+        text-align: center;
+        width: 100vw;
+    }
+
+    .container-shortcuts-footer {
+        margin: 60px auto 0;
+        width: 100vw;
+    }
+
+    .texts-footer-social {
+        margin: 0px;
+    }
+
+    .email-footer {
+        margin-bottom: 30px;
+    }
+
+    .line3-footer {
+        width: 90vw;
+    }
+
+    .line1and2 {
+        width: 40vw;
+    }
+
+    .container-copyright-social-footer {
+        padding: 0px 10px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .container-copyright-social-footer {
+        padding: 0px 10px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .container-copyright-social-footer {
+        margin-top: 20px;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    .copyright {
+        font-size: 18px;
+    }
+}
+
+/* De quisquilloso para los 380px */
+@media screen and (max-width: 410px) {
+
+    .email-footer {
+        margin-left: -12%;
+    }
+}

@@ -7,6 +7,7 @@
   align-items: center;
   flex-direction: column;
   user-select: none;
+  margin-bottom: 200px auto;
 }
 
 .posicion-obj-home {
@@ -22,10 +23,6 @@
   color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--light-color);
-}
-
-.textos-hero:not(:hover) {
-    transition: 1s;
 }
 
 .textos-hero p {
@@ -56,15 +53,12 @@
   background: rgb(44, 48, 60);
 }
 
-.btn-contact:not(:hover) {
-    transition: 1s;
-}
-
 /* ----- // MODAL CONTACTO // ----- */
 
 .modal-dialog {
   display: flex;
   justify-content: center;
+  user-select: none;
 }
 
 .modal-content {
@@ -94,10 +88,6 @@
   transition: .5s;
 }
 
-.icon-close-modal:not(:hover) {
-  transition: 1s;
-}
-
 .icon-contact {
   color: var(--light-color);
   font-size: 40px;
@@ -108,10 +98,6 @@
   transition: .5s;
 }
 
-.icon-contact:not(:hover) {
-  transition: 1s;
-}
-
 .social {
   display: flex;
   align-items: center;
@@ -120,6 +106,7 @@
 
 .social-name {
   margin: auto 15px;
+  user-select: text;
 }
 
 .advice-modal {

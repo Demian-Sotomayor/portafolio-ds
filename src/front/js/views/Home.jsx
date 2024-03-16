@@ -1,9 +1,27 @@
+import { useEffect } from "react";
 import "../../styles/Home.css";
+import Contact from "../components/Contact.jsx";
 
-const Home = () => {
+const Home = ({id, isActive, onChange}) => {
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = document.getElementById(id);
+      const rect = element.getBoundingClientRect();
+      const scrollPosition = window.scrollY + (window.innerHeight / 2);
+
+      if(scrollPosition >= rect.top && scrollPosition < rect.bottom) {
+        onChange("home");
+      }
+    };
+
+    window.addEventListener('scroll',handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [id, onChange]);
+
   return (
     <>
-      <div className="container-fluid mb-5 container-home">
+      <div id={id} className={`container-fluid mb-5 container-home ${isActive ? 'active' : ''}`}>
         <div className="posicion-obj-home">
           <div className="textos-hero">
             <p className="text-left">Hi!</p>
@@ -22,67 +40,10 @@ const Home = () => {
             Contact me!
           </button>
         </div>
-
-        <div
-          className="modal fade"
-          id="modalContact"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <button
-                type="button"
-                className="btn-close-modal"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
-                <i className="fa-solid fa-xmark icon-close-modal"></i>
-              </button>
-
-              <div className="modal-body">
-                <h3 className="text-center">This is my contact info and my profiles!</h3>
-
-                <div className="social mt-5">
-                  <i className="fa-solid fa-envelope icon-contact"></i>
-                  <h5 className="social-name">demian.sotomayor.ur@gmail.com</h5>
-                </div>
-
-                <div className="social">
-                  <i className="fa-solid fa-phone icon-contact"></i>
-                  <h5 className="social-name">+56 9 7874 9131</h5>
-                </div>
-
-                <div className="social">
-                  <a
-                    className="icon-contact"
-                    href="https://www.github.com/Demian-Sotomayor"
-                    target="_blank"
-                  >
-                    <i className="fa-brands fa-github"></i>
-                  </a>
-                  <h5 className="text-white social-name">Demian-Sotomayor</h5>
-                </div>
-
-                <div className="social">
-                  <a
-                    className="icon-contact"
-                    href="https://www.linkedin.com/in/demian-sotomayor-urrutia/"
-                    target="_blank"
-                  >
-                    <i className="fa-brands fa-linkedin"></i>
-                  </a>
-                  <h5 className="text-white social-name">
-                    demian-sotomayor-urrutia
-                  </h5>
-                </div>
-                <h6 className="advice-modal">(You can click on some icons)</h6>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+      {/* Llamado al componente Contact para traer el modal de contacto */}
+      <Contact />
     </>
   );
 };
