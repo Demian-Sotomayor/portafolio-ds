@@ -8,6 +8,11 @@
 
 }
 
+.linea-projects {
+    width: 100%;
+    opacity: 50%;
+}
+
 /* ----- // TEXTOS // ----- */
 
 .projects-title {
@@ -55,12 +60,14 @@
     position: absolute;
     top: 100%;
     margin-top: 30px;
+    z-index: -1;
 }
 
 .carousel-caption {
     position: relative;
     left: 0%;
     bottom: -15px;
+    z-index: -1;
 }
 
 /* ----- // MEDIA QUERIES // ----- */
@@ -68,7 +75,7 @@
 /* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
     .container-projects {
-        margin: 100px auto 250px;
+        margin: 200px auto 250px;
         padding: 0px 50px;
     }
 }
@@ -101,12 +108,17 @@
 }
 
 @media screen and (max-width: 1000px) {
+    .container-projects {
+        margin-top: 100px;
+    }
+
     .img-carousel {
         width: 40%;
     }
 }
 
 @media screen and (max-width: 700px) {
+
     .img-carousel {
         width: 60%;
     }
@@ -117,6 +129,10 @@
 }
 
 @media screen and (max-width: 560px) {
+    .container-projects {
+        margin-top: 50px;
+    }
+
     .img-carousel {
         width: 80%;
     }

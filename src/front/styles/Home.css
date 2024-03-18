@@ -13,11 +13,20 @@
 .posicion-obj-home {
   position: relative;
   left: -20%;
+  z-index: 1;
+}
+
+.marco-home {
+  position: absolute;
+  top: 3%;
+  opacity: 80%;
+  left: 3%;
+  z-index: -1;
 }
 
 /* ----- // TEXTOS DE HOME // ----- */
 .textos-hero {
-  margin-top: 90px;
+  margin-top: 120px;
   font-weight: 700;
   font-size: 55px;
   color: transparent;
@@ -119,6 +128,10 @@
 
 /* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
+  .marco-home {
+    left: 1%;
+  }
+
   .posicion-obj-home {
     left: -25%;
   }
@@ -137,7 +150,7 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
 */
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1380px) {
     .posicion-obj-home {
         position: static;
         display: flex;
@@ -158,8 +171,16 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
   }
 }
 
+@media screen and (max-width: 1100px) {
+  .marco-home {
+    display: none;
+  }
+
+}
+
 /* Breakpoint por quisquilloso */
 @media screen and (max-width: 700px) {
+
     .textos-hero {
       font-size: 45px;
     }

@@ -7,30 +7,55 @@ import Footer from "./Footer";
 import Menu from "../components/Menu";
 
 const App = () => {
-  const [currentSection, setCurrentSection] = useState("home");
+    const [visibleComponent, setVisibleComponent] = useState("home");
 
-  const handleSectionChange = (sectionId) => {
-    setCurrentSection(sectionId);
-    console.log(currentSection, "SECCIONES EN APP.JSX")
-  }
-
+    useEffect(() => {
+      const handleScroll = () => {
+        const homeTitle = document.getElementById("textos-hero");
+        const aboutTitle = document.getElementById("about-title");
+        const projectsTitle = document.getElementById("projects-title");
+        const footerTitle = document.getElementById("footer-title");
+  
+        const isHomeVisible = isElementVisible(homeTitle);
+        const isAboutVisible = isElementVisible(aboutTitle);
+        const isProjectsVisible = isElementVisible(projectsTitle);
+        const isFooterVisible = isElementVisible(footerTitle);
+  
+        if (isHomeVisible) {
+          setVisibleComponent("home");
+        } else if (isAboutVisible) {
+          setVisibleComponent("about");
+        } else if (isProjectsVisible) {
+          setVisibleComponent("projects");
+        } else if (isFooterVisible) {
+          setVisibleComponent("footer");
+        }
+      };
+  
+      const isElementVisible = (element) => {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight)
+        );
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
 
   return (
     <>
       <Menu />
       <div className="m-5">
-        <div className="home">
-        <Home id="home" isActive={currentSection === "home"} onChange={handleSectionChange} />
-        </div>
-        <div className="about">
-        <About id="about" isActive={currentSection === "about"} onChange={handleSectionChange} />
-        </div>
-        <div className="projects">
-        <Projects id="projects" isActive={currentSection === "projects"} onChange={handleSectionChange} />
-        </div>
-        <div className="footer">
-        <Footer id="footer" isActive={currentSection === "footer"} onChange={handleSectionChange} />
-        </div>
+        {visibleComponent === "home" && <Home />}
+        {visibleComponent === "about" && <About />}
+        {visibleComponent === "projects" && <Projects />}
+        {visibleComponent === "footer" && <Footer />}
       </div>
     </>
   );

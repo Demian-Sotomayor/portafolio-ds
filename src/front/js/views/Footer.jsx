@@ -1,29 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "../../styles/Footer.css";
 import line3 from "../../../assets/line3.svg";
 import line1_2 from "../../../assets/line1-2.svg";
 
-const Footer = ({id, isActive, onChange}) => {
+const Footer = () => {
+  const footerContactRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const element = document.getElementById(id);
-      const rect = element.getBoundingClientRect();
-      const scrollPosition = window.scrollY + (window.innerHeight / 2);
-
-      if(scrollPosition >= rect.top && scrollPosition < rect.bottom) {
-        onChange("footer");
+      const footerElement = footerRef.current;
+      if (isElementVisible(footerElement)) {
+        // Aquí podrías ejecutar alguna acción si el elemento es visible
       }
     };
 
-    window.addEventListener('scroll',handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [id, onChange]);
+    const isElementVisible = (element) => {
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight)
+      );
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div id={id} className={`container-fluid d-flex row justify-content-around container-footer ${isActive ? 'active' : ''}`}>
-      <div className="container-contact-footer col-4">
-        <h3 className="text-center mb-3 footer-title">Contact</h3>
+    <div className="container-fluid d-flex row justify-content-around container-footer">
+      <div className="container-contact-footer col-4" ref={footerContactRef}>
+        <h3 id="footer-title-contact" className="text-center mb-3 footer-title">
+          Contact
+        </h3>
         <img src={line1_2} alt="" className="line1and2" />
         <div className="texts-footer-social">
           <p>Email:</p>

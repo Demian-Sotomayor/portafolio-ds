@@ -1,27 +1,37 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "../../styles/About.css";
 import demianProfile from "../../img/demian.jpg";
 
-const About = ({id, isActive, onChange}) => {
+const About = () => {
+  const aboutTextsRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const element = document.getElementById(id);
-      const rect = element.getBoundingClientRect();
-      const scrollPosition = window.scrollY + (window.innerHeight / 2);
-
-      if(scrollPosition >= rect.top && scrollPosition < rect.bottom) {
-        onChange("about");
+      const aboutElement = aboutRef.current;
+      if (isElementVisible(aboutElement)) {
+        // Aquí podrías ejecutar alguna acción si el elemento es visible
       }
     };
 
-    window.addEventListener('scroll',handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [id, onChange]);
+    const isElementVisible = (element) => {
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight)
+      );
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div id={id} className={`container-fluid container-about ${isActive ? 'active' : ''}`}>
-      <h1 className="about-title">About</h1>
+    <div id="about" className="container-fluid container-about">
+      <h1 id="about-title" className="about-title">
+        About
+      </h1>
       <div className="img-container">
         <img
           src={demianProfile}
@@ -29,7 +39,7 @@ const About = ({id, isActive, onChange}) => {
           className="demian-profile"
         />
       </div>
-      <div className="about-texts">
+      <div className="about-texts" ref={aboutTextsRef}>
         <p>
           My path into programming began in early 2022, when I was just 17 years
           old. I started studying the fundamentals and delving into web design

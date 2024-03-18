@@ -1,29 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "../../styles/Home.css";
 import Contact from "../components/Contact.jsx";
+import marcoHome from "../../../assets/Marco.svg";
 
-const Home = ({id, isActive, onChange}) => {
+const Home = () => {
+  const textosHeroRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const element = document.getElementById(id);
-      const rect = element.getBoundingClientRect();
-      const scrollPosition = window.scrollY + (window.innerHeight / 2);
-
-      if(scrollPosition >= rect.top && scrollPosition < rect.bottom) {
-        onChange("home");
+      const textosHero = textosHeroRef.current;
+      if (isElementVisible(textosHero)) {
+        // Aquí podrías ejecutar alguna acción si el elemento es visible
       }
     };
 
-    window.addEventListener('scroll',handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [id, onChange]);
+    const isElementVisible = (element) => {
+      if (!element) return false;
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.bottom <=
+          (window.innerHeight || document.documentElement.clientHeight)
+      );
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <div id={id} className={`container-fluid mb-5 container-home ${isActive ? 'active' : ''}`}>
+      <img src={marcoHome} alt="" className="marco-home" />
+      <div id="home" className="container-fluid mb-5 container-home">
         <div className="posicion-obj-home">
-          <div className="textos-hero">
+          <div id="textos-hero" className="textos-hero" ref={textosHeroRef}>
             <p className="text-left">Hi!</p>
             <p className="text-left">I&#39;m Demian,</p>
             <p className="text-left">
