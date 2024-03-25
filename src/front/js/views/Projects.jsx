@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import "../../styles/Projects.css";
 import empty from "../../img/logo.jpg";
 import michiEng from "../../img/michi-eng.png";
@@ -6,29 +5,6 @@ import Swal from "sweetalert2";
 import lineaProjects from "../../../assets/linea-lado-a-lado.svg";
 
 const Projects = () => {
-  const projectsRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const projectsElement = projectsRef.current;
-      if (isElementVisible(projectsElement)) {
-        // Aquí podrías ejecutar alguna acción si el elemento es visible
-      }
-    };
-
-    const isElementVisible = (element) => {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight)
-      );
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleAlertMoreProjects = () => {
     Swal.fire({
@@ -43,13 +19,7 @@ const Projects = () => {
       <img src={lineaProjects} alt="" className="linea-projects" />
       <div id="projects" className="container-fluid container-projects">
         {/* ---- TÍTULO ---- */}
-        <h1
-          id="projects-title"
-          className="projects-title text-center"
-          ref={projectsRef}
-        >
-          Projects
-        </h1>
+        <h1 className="projects-title text-center">Projects</h1>
         {/* ---- CONTAINER CARRUSEL ---- */}
         <div className="container-carousel">
           <div id="carouselExampleDark" className="carousel slide">

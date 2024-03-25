@@ -1,37 +1,37 @@
-import { useEffect, useRef } from "react";
 import "../../styles/Footer.css";
 import line3 from "../../../assets/line3.svg";
 import line1_2 from "../../../assets/line1-2.svg";
+import Swal from "sweetalert2";
 
 const Footer = () => {
-  const footerContactRef = useRef(null);
+  const handleClickProjects = () => {
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const footerElement = footerRef.current;
-      if (isElementVisible(footerElement)) {
-        // Aquí podrías ejecutar alguna acción si el elemento es visible
+    Swal.fire({
+      text: "Oh my god, did you actually click for a shortcut even though if you scroll 1 millimeter there are the projects?",
+      confirmButtonText: "Yes, I do",
+      cancelButtonText: "Cancel",
+      showCancelButton: true,
+    }).then((result) => {
+      if(result.isConfirmed) {
+        setTimeout(() => {
+          window.scrollTo(0, 1720)
+        }, 400);
       }
-    };
+    });
+  };
 
-    const isElementVisible = (element) => {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight)
-      );
-    };
+  const handleClickAbout = () => {
+    window.scrollTo(0,750)
+  }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleClickHome = () => {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <div className="container-fluid d-flex row justify-content-around container-footer">
-      <div className="container-contact-footer col-4" ref={footerContactRef}>
-        <h3 id="footer-title-contact" className="text-center mb-3 footer-title">
+      <div className="container-contact-footer col-4">
+        <h3 className="text-center mb-3 footer-title">
           Contact
         </h3>
         <img src={line1_2} alt="" className="line1and2" />
@@ -46,9 +46,9 @@ const Footer = () => {
       <div className="container-shortcuts-footer text-center col-4">
         <h3 className="mb-3 footer-title">Shortcuts</h3>
         <img src={line1_2} alt="" className="line1and2" />
-        <p>Home</p>
-        <p className="my-4">About</p>
-        <p>Projects</p>
+        <p onClick={handleClickHome}>Home</p>
+        <p onClick={handleClickAbout} className="my-4">About</p>
+        <p onClick={handleClickProjects}>Projects</p>
       </div>
 
       <img src={line3} alt="" className="line3-footer" />

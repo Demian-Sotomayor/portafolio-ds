@@ -155,3 +155,9 @@
         margin-left: -12%;
     }
 }
+
+@media screen and (min-height: 1000px) {
+    .container-footer p {
+        font-size: 22px;
+    }
+}

@@ -139,3 +139,10 @@
         height: 200px;
     }
 }
+
+@media screen and (min-height: 1000px) {
+    .about-texts {
+        font-size: 20px;
+    }
+
+}

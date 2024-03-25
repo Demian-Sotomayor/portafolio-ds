@@ -1,5 +1,5 @@
 
-/* ----- // ESTILOS GENERALES // ----- */
+/* ----- // SCROLL PERSONALIZADO // ----- */
 
 :root {
     --main-bg-color: #23252C;
@@ -7,7 +7,7 @@
 }
 
 :root::-webkit-scrollbar {
-    width: 30px; 
+    width: 30px;
 }
 
 :root::-webkit-scrollbar-track {
@@ -19,6 +19,8 @@
     background-repeat: no-repeat, no-repeat;
     background-size: 30px;
 }
+
+/* ----- // ESTILOS GENERALES // ----- */
 
 body {
     margin: 0;
@@ -41,63 +43,24 @@ body {
     }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut .6s ease forwards;
+}
+
+.fade-in {
+    animation: fadeInAnimation 0.1s ease forwards;
+}
+
 /* Recién se me ocurrió después añadir esto en general */
 *:not(:hover) {
     transition: .5s;
-}
-
-/* ----- // MENÚ // ----- */
-
-.menu {
-    position: fixed;
-    top: 8%;
-    right: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    z-index: 1;
-}
-
-
-.cambiar-esp {
-    font-size: 40px;
-    margin: 0;
-    margin-right: 30px;
-    user-select: none;
-}
-
-.cambiar-esp:hover {
-    text-shadow: 0px 0px 5px var(--light-color);
-    transition: .5s;
-}
-
-.ver-mas-menu {
-    width: 40px;
-    height: 40px;
-}
-
-.ver-mas-menu:hover {
-    transform: scale(0.95);    
-    filter: drop-shadow(0px 0px 3px var(--light-color));
-    transition: .5s;
-}
-
-@media screen and (max-width: 1150px) {
-    .cambiar-esp {
-        font-size: 35px;
-        margin-right: 20px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .menu {
-        top: 5%;
-        opacity: 50%;
-    }
-    
-    .cambiar-esp {
-        display: none;
-    }
-
 }

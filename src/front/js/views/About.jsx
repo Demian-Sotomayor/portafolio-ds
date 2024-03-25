@@ -1,34 +1,10 @@
-import { useEffect, useRef } from "react";
 import "../../styles/About.css";
 import demianProfile from "../../img/demian.jpg";
 
 const About = () => {
-  const aboutTextsRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const aboutElement = aboutRef.current;
-      if (isElementVisible(aboutElement)) {
-        // Aquí podrías ejecutar alguna acción si el elemento es visible
-      }
-    };
-
-    const isElementVisible = (element) => {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight)
-      );
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
-    <div id="about" className="container-fluid container-about">
+    <div className="container-fluid container-about">
       <h1 id="about-title" className="about-title">
         About
       </h1>
@@ -39,7 +15,7 @@ const About = () => {
           className="demian-profile"
         />
       </div>
-      <div className="about-texts" ref={aboutTextsRef}>
+      <div className="about-texts">
         <p>
           My path into programming began in early 2022, when I was just 17 years
           old. I started studying the fundamentals and delving into web design
