@@ -34,6 +34,10 @@
   -webkit-text-stroke-color: var(--light-color);
 }
 
+.textos-hero-esp {
+  margin-left: 80px;
+}
+
 .textos-hero p {
   margin: 0;
 }
@@ -81,6 +85,10 @@
 .btn-close-modal {
   background: transparent;
   border: none;
+}
+
+.modal-backdrop.show {
+  z-index: 0;
 }
 
 .icon-close-modal {
@@ -175,7 +183,6 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
   .marco-home {
     display: none;
   }
-
 }
 
 /* Breakpoint por quisquilloso */

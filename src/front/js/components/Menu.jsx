@@ -3,8 +3,10 @@ import verMas from "../../../assets/ver-mas.svg";
 import x from "../../../assets/x.svg";
 import marcoMenu from "../../../assets/marco-menu.svg";
 import michi from "../../../assets/michi.svg";
+import { useEffect, useState } from "react";
 
-const Menu = ({ isActive, setIsActive }) => {
+const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
+
   const handleMenuActive = () => {
     if (isActive) {
       setIsActive(false);
@@ -13,10 +15,22 @@ const Menu = ({ isActive, setIsActive }) => {
     }
   };
 
+  const handleIdioma = () => {
+    const cambiarIdioma = idioma === "esp" ? "eng" : "esp";
+    setIdioma(cambiarIdioma);
+    localStorage.setItem("idioma", cambiarIdioma)
+  }
+
+  useEffect(() => {
+    if(!localStorage.getItem("idioma")) {
+      localStorage.setItem("idioma", "eng");
+    }
+  }, []);
+
   return (
     <>
       <div className={`menu ${isActive ? "active" : ""}`}>
-        <p className="cambiar-esp">Es</p>
+        <p onClick={handleIdioma} className="cambiar-esp">{idioma === "esp" ? "En" : "Es" }</p>
         <img
           src={isActive ? x : verMas}
           alt="menu"
