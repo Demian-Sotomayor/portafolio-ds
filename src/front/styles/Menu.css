@@ -1,0 +1,269 @@
+
+/* ----- // MENÚ // ----- */
+
+.menu-opened {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0%;
+    z-index: 3;
+    max-height: 1250px;
+    box-shadow: 0px 0px 10px 1px var(--light-color);
+}
+
+.menu {
+    position: fixed;
+    top: 8%;
+    right: 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    z-index: 5;
+}
+
+.cambiar-esp {
+    font-size: 40px;
+    margin: 0;
+    margin-right: 30px;
+    user-select: none;
+}
+
+.cambiar-esp:hover {
+    text-shadow: 0px 0px 5px var(--light-color);
+    transition: .5s;
+}
+
+.ver-mas-menu {
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    transition: transform .7s ease-in-out;
+}
+
+.menu.active .ver-mas-menu {
+  transform: rotate(180deg);
+}
+
+.ver-mas-menu:hover {
+    transform: scale(0.95);    
+    filter: drop-shadow(0px 0px 3px var(--light-color));
+    transition: .5s;
+}
+
+/* ----- // MENÚ ABIERTO // ----- */
+
+.text-menu {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    text-shadow: -3px -3px 1px rgba(76, 120, 202, 0.5);
+    color: var(--light-color);
+    width: 40%;
+    font-size: 40px;
+    text-align: justify;
+}
+
+.marco-menu {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    opacity: 80%;
+    z-index: -1;
+    width: 97%;
+}
+
+.michi-menu {
+    position: absolute;
+    bottom: 0%;
+    right: 7%;
+    width: 21%;
+}
+
+.btn-menu {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    margin-top: 60px;
+    padding: 10px 30px;
+    font-size: 25px;
+    border: 1px solid var(--light-color);
+    background: transparent;
+    color: white;
+    box-shadow: 0px 0px 8px var(--light-color);
+    width: 15%;
+  }
+  
+  .btn-menu:hover {
+    box-shadow: 0px 0px 18px var(--light-color);
+    transition: 1s;
+    background: rgb(44, 48, 60);
+  }
+
+/* ----- // MEDIA QUERIES (WIDTH) // ----- */
+
+@media screen and (min-width: 1600px) {
+    .michi-menu {
+        bottom: 0%;
+        right: 7%;
+        width: 23%;
+    }
+
+    .marco-menu {
+        top: 3%;
+        left: 1%;
+        width: 99%;
+    }
+
+    .text-menu {
+        top: 30%;
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .menu-opened {
+        max-height: 100%;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .marco-menu {
+        display: none;
+    }
+
+    .text-menu {
+        font-size: 35px;
+    }
+
+    .michi-menu {
+        width: 24%;
+    }
+
+    .btn-menu {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .cambiar-esp {
+        font-size: 35px;
+        margin-right: 20px;
+    }
+
+    .text-menu {
+        font-size: 32px;
+        width: 45%;
+    }
+
+    .michi-menu {
+        width: 28%;
+    }
+
+    .btn-menu {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .michi-menu {
+        width: 33%;
+    }
+
+    .text-menu {
+        text-align: center;
+        font-size: 26px;
+        width: 80%;
+        top: 30%;
+    }
+
+    .btn-menu {
+        left: 15%;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .menu {
+        top: 5%;
+        opacity: 50%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+    .cambiar-esp {
+        margin-right: 0;
+        margin-top: 10px;
+        font-size: 23px;
+        opacity: 50%;
+    }
+    
+    .btn-menu {
+        left: 15%;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .text-menu {
+        left: 10%;
+        width: 80%;
+    }
+
+    .btn-menu {
+        left: 15%;
+    }
+
+    .michi-menu {
+        right: 1%;
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .text-menu {
+        width: 100%;
+        font-size: 24px;
+        left: 0%;
+        padding: 20px;
+        top: 30%;
+    }
+
+    .btn-menu {
+        width: 40%;
+        left: 10%;
+        margin-top: 40px;
+    }
+}
+
+/* ----- // MEDIA QUERIES (HEIGHT) // ----- */
+
+@media screen and (min-height: 1000px) {
+    .menu-opened {
+        height: 100%;
+        box-shadow: 0px 0px 10px 1px var(--light-color);
+    }
+
+    .marco-menu {
+        display: none;
+    }
+
+    .text-menu {
+        font-size: 34px;
+        width: 60%;
+        top: 30%;
+    }
+
+    .btn-menu {
+        font-size: 30px;
+        width: 30%;
+    }
+
+    .michi-menu {
+        width: 40%;
+        right: 1%;
+    }
+}

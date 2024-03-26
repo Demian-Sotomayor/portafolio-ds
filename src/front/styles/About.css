@@ -2,7 +2,7 @@
 /* ----- // ESTILOS GENERALES // ----- */
 
 .container-about {
-    margin: 200px auto;
+    margin: 250px auto 200px;
     padding: 0 50px;
     user-select: none;
 }
@@ -13,9 +13,6 @@
     text-shadow: 0px 0px 6px var(--light-color);
 }
 
-.about-title:not(:hover) {
-    transition: 1s;
-}
 
 .about-texts {
     margin-top: 30px;
@@ -23,10 +20,6 @@
     word-spacing: 5px;
     width: 65%;
     text-align: justify; 
-}
-
-.about-texts:not(:hover) {
-    transition: 1s;
 }
 
 
@@ -43,15 +36,12 @@
     transition: .5s;
 }
 
-.demian-profile:not(:hover) {
-    transition: 1s;
-}
-
 .img-container {
     float: right;
     position: absolute;
     right: 12%;
     margin-top: 50px;
+    z-index: -1;
 }
 
 /* ----- // MEDIA QUERIES // ----- */
@@ -59,7 +49,7 @@
 /* arreglo para pantallas más grandes que 1920x1080 */
 @media screen and (min-width: 1600px) {
     .container-about {
-        margin: 350px auto 300px;
+        margin: 350px auto 200px;
         padding: 0 50px;
     }
 
@@ -120,7 +110,19 @@
     }
 }
 
+@media screen and (max-width: 1100px) {
+    .container-about {
+        margin: 150px auto;
+
+    }
+}
+
 @media screen and (max-width: 800px) {
+    .container-about {
+        margin-bottom: 100px;
+        margin-top: 200px;
+    }
+
     .about-texts {
         width: 100%;  
         line-height: 40px;
@@ -128,8 +130,19 @@
 }
 
 @media screen and (max-width: 500px) {
+    .container-about {
+        margin-bottom: 50px;
+    }
+
     .demian-profile {
         width: 200px;
         height: 200px;
     }
+}
+
+@media screen and (min-height: 1000px) {
+    .about-texts {
+        font-size: 20px;
+    }
+
 }

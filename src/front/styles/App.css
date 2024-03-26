@@ -1,13 +1,28 @@
 
-/* ----- // ESTILOS GENERALES // ----- */
+/* ----- // SCROLL PERSONALIZADO // ----- */
 
 :root {
     --main-bg-color: #23252C;
     --light-color: #b8d0ff;
 }
 
+:root::-webkit-scrollbar {
+    width: 30px;
+}
+
+:root::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+:root::-webkit-scrollbar-thumb {
+    background-image: url('../../assets/Rectangle.svg'); 
+    background-repeat: no-repeat, no-repeat;
+    background-size: 30px;
+}
+
+/* ----- // ESTILOS GENERALES // ----- */
+
 body {
-    height: 100%;
     margin: 0;
     color: white;
     background: var(--main-bg-color);
@@ -15,6 +30,8 @@ body {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    scroll-behavior: smooth;
+    overflow: transparent;
 }
 
 @keyframes fadeInAnimation {
@@ -26,69 +43,20 @@ body {
     }
 }
 
-/* ----- // MENÚ // ----- */
-
-.menu {
-    position: fixed;
-    top: 8%;
-    right: 6%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    z-index: 1;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-.menu:not(:hover) {
-    transition: 1s;
+.fade-out {
+  animation: fadeOut .6s ease forwards;
 }
 
-.cambiar-esp {
-    font-size: 40px;
-    margin: 0;
-    margin-right: 30px;
-    user-select: none;
-}
-
-.cambiar-esp:hover {
-    text-shadow: 0px 0px 5px var(--light-color);
+/* Recién se me ocurrió después añadir esto en general */
+*:not(:hover) {
     transition: .5s;
-}
-
-.cambiar-esp:not(:hover) {
-    transition: 1s;
-}
-
-.ver-mas-menu {
-    width: 40px;
-    height: 40px;
-}
-
-.ver-mas-menu:hover {
-    transform: scale(0.95);    
-    filter: drop-shadow(0px 0px 3px var(--light-color));
-    transition: .5s;
-}
-
-.ver-mas-menu:not(:hover) {
-    transition: 1s;
-}
-
-@media screen and (max-width: 1150px) {
-    .cambiar-esp {
-        font-size: 35px;
-        margin-right: 20px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .menu {
-        top: 5%;
-        opacity: 50%;
-    }
-    
-    .cambiar-esp {
-        display: none;
-    }
-
 }

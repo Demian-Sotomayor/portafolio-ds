@@ -1,15 +1,18 @@
 import "../../styles/Home.css";
+import Contact from "../components/Contact.jsx";
+import marcoHome from "../../../assets/Marco.svg";
 
-const Home = () => {
+const Home = ({ idioma }) => {
   return (
     <>
+      <img src={marcoHome} alt="" className="marco-home" />
       <div className="container-fluid mb-5 container-home">
-        <div className="posicion-obj-home">
-          <div className="textos-hero">
-            <p className="text-left">Hi!</p>
-            <p className="text-left">I&#39;m Demian,</p>
+        <div className={`posicion-obj-home ${idioma === "esp" ? "textos-hero-esp" : ""}`}>
+          <div id="textos-hero" className="textos-hero">
+            <p className="text-left">{idioma === "esp" ? "¡Hola!" : "Hi!"}</p>
+            <p className="text-left">{idioma === "esp" ? "Soy Demian," : "I'm Demian,"}</p>
             <p className="text-left">
-              <strong>Full-Stack Developer</strong>
+              <strong>{idioma === "esp" ? "Desarrollador Full-Stack" : "Full-Stack Developer"}</strong>
             </p>
           </div>
 
@@ -19,70 +22,13 @@ const Home = () => {
             data-bs-toggle="modal"
             data-bs-target="#modalContact"
           >
-            Contact me!
+            {idioma === "esp" ? "¡Contáctame!" : "Contact me!"}
           </button>
         </div>
-
-        <div
-          className="modal fade"
-          id="modalContact"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <button
-                type="button"
-                className="btn-close-modal"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
-                <i className="fa-solid fa-xmark icon-close-modal"></i>
-              </button>
-
-              <div className="modal-body">
-                <h3 className="text-center">This is my contact info and my profiles!</h3>
-
-                <div className="social mt-5">
-                  <i className="fa-solid fa-envelope icon-contact"></i>
-                  <h5 className="social-name">demian.sotomayor.ur@gmail.com</h5>
-                </div>
-
-                <div className="social">
-                  <i className="fa-solid fa-phone icon-contact"></i>
-                  <h5 className="social-name">+56 9 7874 9131</h5>
-                </div>
-
-                <div className="social">
-                  <a
-                    className="icon-contact"
-                    href="https://www.github.com/Demian-Sotomayor"
-                    target="_blank"
-                  >
-                    <i className="fa-brands fa-github"></i>
-                  </a>
-                  <h5 className="text-white social-name">Demian-Sotomayor</h5>
-                </div>
-
-                <div className="social">
-                  <a
-                    className="icon-contact"
-                    href="https://www.linkedin.com/in/demian-sotomayor-urrutia/"
-                    target="_blank"
-                  >
-                    <i className="fa-brands fa-linkedin"></i>
-                  </a>
-                  <h5 className="text-white social-name">
-                    demian-sotomayor-urrutia
-                  </h5>
-                </div>
-                <h6 className="advice-modal">(You can click on some icons)</h6>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+      {/* Llamado al componente Contact para traer el modal de contacto */}
+      <Contact idioma={idioma} />
     </>
   );
 };
