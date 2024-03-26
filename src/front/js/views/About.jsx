@@ -1,5 +1,5 @@
 import "../../styles/About.css";
-import demianProfile from "../../img/demian.jpg";
+import demianProfile from "../../img/portafolio/demian.jpg";
 
 const About = ({ idioma }) => {
   return (

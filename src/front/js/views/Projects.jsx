@@ -1,7 +1,7 @@
 import "../../styles/Projects.css";
-import empty from "../../img/logo.jpg";
-import michiEng from "../../img/michi-eng.png";
-import michiEsp from "../../img/michi-esp.png";
+import empty from "../../img/portafolio/logo.jpg";
+import michiEng from "../../img/portafolio/michi-eng.png";
+import michiEsp from "../../img/portafolio/michi-esp.png";
 import Swal from "sweetalert2";
 import lineaProjects from "../../../assets/linea-lado-a-lado.svg";
 

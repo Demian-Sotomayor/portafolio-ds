@@ -4,8 +4,11 @@ import x from "../../../assets/x.svg";
 import marcoMenu from "../../../assets/marco-menu.svg";
 import michi from "../../../assets/michi.svg";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
+
+  const navigate = useNavigate();
 
   const handleMenuActive = () => {
     if (isActive) {
@@ -27,6 +30,10 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
     }
   }, []);
 
+  const handleClickGame = () => {
+    navigate("/game")
+  }
+
   return (
     <>
       <div className={`menu ${isActive ? "active" : ""}`}>
@@ -47,6 +54,7 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
         <button
             type="button"
             className="btn-menu"
+            onClick={handleClickGame}
           >
             {idioma === "esp" ? "¡Ayuda!" : "Help!"}
           </button>
