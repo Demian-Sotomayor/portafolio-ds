@@ -42,13 +42,13 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
       {/* Modal */}
       <div className={`${isActive ? "menu-opened" : "opacity-0"}`}>
         <img src={marcoMenu} alt="" className="marco-menu" />
-        <h2 className="text-menu">Over time I will bring more sections! For now help this kitten in this minigame I made!</h2>
+        <h2 className="text-menu">{idioma === "esp" ? "¡Con el tiempo traeré más secciones! Por ahora puedes ayudar a este gatito en un minijuego que hice." : "Over time I will bring more sections! For now help this kitten in this minigame I made!"}</h2>
         <img src={michi} alt="" className="michi-menu" />
         <button
             type="button"
             className="btn-menu"
           >
-            Help!
+            {idioma === "esp" ? "¡Ayuda!" : "Help!"}
           </button>
       </div>
     </>

@@ -1,6 +1,6 @@
 import "../../styles/Home.css";
 
-const Contact = () => {
+const Contact = ({idioma}) => {
   return (
     <div
       className="modal fade"
@@ -22,7 +22,8 @@ const Contact = () => {
 
           <div className="modal-body">
             <h3 className="text-center">
-              This is my contact info and my profiles!
+              {idioma === "esp" ? "¡Ésta es mi información de contacto y mis perfiles!" : "This is my contact info and my profiles!"}
+
             </h3>
 
             <div className="social mt-5">
@@ -58,7 +59,7 @@ const Contact = () => {
                 demian-sotomayor-urrutia
               </h5>
             </div>
-            <h6 className="advice-modal">(You can click on some icons)</h6>
+            <h6 className="advice-modal">{idioma === "esp" ? "(Puedes clickear en algunos íconos)" : "(You can click on some icons)"}</h6>
           </div>
         </div>
       </div>

@@ -1,17 +1,27 @@
 import "../../styles/Projects.css";
 import empty from "../../img/logo.jpg";
 import michiEng from "../../img/michi-eng.png";
+import michiEsp from "../../img/michi-esp.png";
 import Swal from "sweetalert2";
 import lineaProjects from "../../../assets/linea-lado-a-lado.svg";
 
-const Projects = () => {
+const Projects = ({idioma}) => {
 
   const handleAlertMoreProjects = () => {
-    Swal.fire({
-      icon: "info",
-      title: "Stop there!",
-      text: "There appears to be no more content available at this time, but don't worry, more will be added over time!",
-    });
+
+    if (idioma === "esp") {
+      Swal.fire({
+        icon: "info",
+        title: "¡Espera!",
+        text: "Parece que no hay más contenido disponible... ¡Pero no te preocupes! con el tiempo añadiremos más.",
+      });
+    } else {
+      Swal.fire({
+        icon: "info",
+        title: "Stop there!",
+        text: "There appears to be no more content available at this time, but don't worry, more will be added over time!",
+      });
+    }
   };
 
   return (
@@ -19,7 +29,7 @@ const Projects = () => {
       <img src={lineaProjects} alt="" className="linea-projects" />
       <div id="projects" className="container-fluid container-projects">
         {/* ---- TÍTULO ---- */}
-        <h1 className="projects-title text-center">Projects</h1>
+        <h1 className="projects-title text-center">{idioma === "esp" ? "Proyectos" : "Projects"}</h1>
         {/* ---- CONTAINER CARRUSEL ---- */}
         <div className="container-carousel">
           <div id="carouselExampleDark" className="carousel slide">
@@ -95,7 +105,7 @@ const Projects = () => {
               <div className="carousel-item">
                 <div className="container-img-carousel">
                   <img
-                    src={michiEng}
+                    src={idioma === "esp" ? michiEsp : michiEng}
                     className="img-carousel"
                     alt="..."
                     onClick={handleAlertMoreProjects}
@@ -103,10 +113,10 @@ const Projects = () => {
                 </div>
                 {/* INFO MÁS PROYECTOS */}
                 <div className="carousel-caption">
-                  <h5>Discover more of my projects!</h5>
+                  <h5>{idioma === "esp" ? "¡Descubre más de mis proyectos!" : "Discover more of my projects!"}</h5>
                   <p className="opacity-75">
-                    Exactly, I couldn&#39;t think of any other way to get you to
-                    click the photo.
+                    {idioma === "esp" ? "Efectivamente, no se me ocurrió otra forma de que hagas click en la foto" : "Exactly, I couldn't think of any other way to get you to click the photo."}
+
                   </p>
                 </div>
               </div>

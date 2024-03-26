@@ -13,11 +13,11 @@ const App = () => {
   return (
     <>
       <Menu setIsActive={setIsActive} isActive={isActive} setIdioma={setIdioma} idioma={idioma} />
-      <div className={`m-5 content ${isActive ? "fade-out" : "fade-in"}`}>
-        <Home setIdioma={setIdioma} idioma={idioma}  />
-        <About setIdioma={setIdioma} idioma={idioma}  />
-        <Projects setIdioma={setIdioma} idioma={idioma}  />
-       <Footer setIdioma={setIdioma} idioma={idioma}  />
+      <div className={`m-5 content ${isActive ? "fade-out" : ""}`}>
+        <Home idioma={idioma}  />
+        <About idioma={idioma}  />
+        <Projects idioma={idioma}  />
+       <Footer idioma={idioma}  />
       </div>
     </>
   );

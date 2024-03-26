@@ -56,10 +56,6 @@ body {
   animation: fadeOut .6s ease forwards;
 }
 
-.fade-in {
-    animation: fadeInAnimation 0.1s ease forwards;
-}
-
 /* Recién se me ocurrió después añadir esto en general */
 *:not(:hover) {
     transition: .5s;
