@@ -1,4 +1,12 @@
 
+.button-back-home {
+    border: none;
+    background: none;
+    color: var(--light-color);
+    position: absolute;
+    top: 7%;
+    left: 4%;
+}
 /* ----- // ESTAMBRES RECUPERADOS (HUD) // ----- */
 
 .estambres-recuperados {
@@ -49,6 +57,10 @@
 /* ----- // MEDIA QUERIES (WIDTH) // ----- */
 
 @media screen and (min-width: 1600px) {
+    .button-back-home {
+        left: 3%;
+    }
+
     .michi-menu-game {
         bottom: 0%;
         right: 7%;
@@ -100,9 +112,15 @@
 }
 
 @media screen and (max-width: 900px) {
+    .button-back-home {
+        left: 3%;
+    }
+
     .estambres-recuperados {
-        top: 5%;
-        left: 5%;
+        top: 20%;
+        left: 2%;
+        display: flex;
+        flex-direction: column;
     }
 
     .estambres-recuperados img {
@@ -119,6 +137,10 @@
     .michi-menu-game {
         width: 35%;
     }
+
+    .button-back-home {
+        left: 7%;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -127,7 +149,8 @@
     }
 
     .estambres-recuperados img {
-        width: 70px;
+        width: 75px;
+        margin-bottom: 10px;
     }
 }
 
@@ -141,5 +164,15 @@
     .michi-menu-game {
         width: 30%;
         right: 1%;
+    }
+
+    .estambres-recuperados {
+        top: 85%;
+        left: 3%;
+        display: block;
+    }
+
+    .estambres-recuperados img {
+        width: 120px;
     }
 }
