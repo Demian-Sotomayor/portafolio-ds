@@ -71,18 +71,18 @@ const Game = () => {
   return (
     <div className="container-fluid">
       <Link to="/" className="button-back-home">
-        <i class="fa-solid fa-arrow-left me-2"></i>
+        <i className="fa-solid fa-arrow-left me-2"></i>
         {idioma === "esp" ? "Inicio" : "Home"}
       </Link>
       <img src={michi} alt="" className="michi-menu-game" />
       <img src={marcoMenu} alt="" className="marco-menu-game" />
 
       <div className="estambres-recuperados">
-        <img src={estambreFijoNivel1} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={handleBallClick(1)} />
-        <img src={estambreFijoNivel2} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={handleBallClick(2)} />
-        <img src={estambreFijoNivel3} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={handleBallClick(3)} />
-        <img src={estambreFijoNivel4} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={handleBallClick(4)} />
-        <img src={estambreFijoNivel5} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={handleBallClick(5)} />
+        <img src={estambreFijoNivel1} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={() => handleBallClick(1)} />
+        <img src={estambreFijoNivel2} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={() => handleBallClick(2)} />
+        <img src={estambreFijoNivel3} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={() => handleBallClick(3)} />
+        <img src={estambreFijoNivel4} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={() => handleBallClick(4)} />
+        <img src={estambreFijoNivel5} alt="" className={opacity >= 25 ? "opacity-25" : "opacity-75"} onClick={() => handleBallClick(5)} />
       </div>
     </div>
   );
