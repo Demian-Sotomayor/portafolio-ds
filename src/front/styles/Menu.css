@@ -96,11 +96,11 @@
     width: 15%;
   }
   
-  .btn-menu:hover {
-    box-shadow: 0px 0px 18px var(--light-color);
-    transition: 1s;
-    background: rgb(44, 48, 60);
-  }
+.btn-menu:hover {
+  box-shadow: 0px 0px 18px var(--light-color);
+  transition: 1s;
+  background: rgb(44, 48, 60);
+}
 
 /* ----- // MEDIA QUERIES (WIDTH) // ----- */
 

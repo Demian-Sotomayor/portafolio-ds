@@ -1,12 +1,19 @@
 
-.button-back-home {
-    border: none;
-    background: none;
-    color: var(--light-color);
-    position: absolute;
-    top: 7%;
-    left: 4%;
+
+.container-game {
+    max-width: 100%;
+    max-height: 100%;
+    user-select: none;
+    overflow: hidden;
 }
+
+.container-ball {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
 /* ----- // ESTAMBRES RECUPERADOS (HUD) // ----- */
 
 .estambres-recuperados {
@@ -35,6 +42,12 @@
     filter: drop-shadow(0px 0px 3px crimson);
 }
 
+/* ----- // ESTAMBRES A MOVIMIENTO (NIVELES) // ----- */
+
+.estambre-movimiento {
+    width: 150px;
+    position: absolute;
+}
 
 /* ----- // MENÚ // ----- */
 
@@ -52,6 +65,36 @@
     bottom: 0%;
     right: 7%;
     width: 21%;
+}
+
+.start-game-button {
+    position: absolute;
+    top: 42%;
+    left: 46%;
+    width: 7%;
+    padding: 20px 30px;
+    font-size: 35px;
+    border-radius: 20px;
+    border: 1px solid var(--light-color);
+    background: transparent;
+    color: white;
+    box-shadow: 0px 0px 8px var(--light-color);
+}
+  
+.start-game-button:hover {
+  box-shadow: 0px 0px 18px var(--light-color);
+  transition: 1s;
+  background: rgb(44, 48, 60);
+}
+
+.button-back-home {
+    border: none;
+    background: none;
+    color: var(--light-color);
+    position: absolute;
+    top: 7%;
+    left: 4%;
+    text-decoration: none;
 }
 
 /* ----- // MEDIA QUERIES (WIDTH) // ----- */
@@ -76,6 +119,13 @@
     .estambres-recuperados {
         top: 75%;
         left: 12%;
+    }
+
+    .start-game-button {
+        top: 44%;
+        left: 47.5%;
+        width: 5%;
+        font-size: 35px;
     }
 }
 
