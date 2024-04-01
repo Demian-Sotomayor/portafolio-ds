@@ -26,9 +26,9 @@ const Game = () => {
   // Bolas de estambre
   const [balls, setBalls] = useState([]);
   // Posición de bolas de estambre
-  const [ballPosition, setBallPosition] = useState({ x: 0, y: 0 });
+  const [ballPosition, setBallPosition] = useState({ x: 200, y: 600 });
   // Velocidad de rebote de la pelota
-  const [velocity, setVelocity] = useState({ x: 1, y: 1 });
+  const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   // Área de juego para que la bola no se vaya al infinito
   const [gameArea, setGameArea] = useState({
     width: window.innerWidth,
@@ -41,14 +41,14 @@ const Game = () => {
   // Juego iniciado
   const [gameStarted, setGameStarted] = useState(false);
   // Ajustar la velocidad dependiendo del nivel
-  const [initialSpeed, setInitialSpeed] = useState(3);
+  const [initialSpeed, setInitialSpeed] = useState(10);
 
   const levelSpeeds = {
-    1: 12,
-    2: 6,
-    3: 9,
-    4: 12,
-    5: 15,
+    1: 800,
+    2: 500,
+    3: 1000,
+    4: 2000,
+    5: 5000,
   };
 
   useEffect(() => {
@@ -98,27 +98,30 @@ const Game = () => {
     setOpacity(75);
   };
 
+
   const updateBallPosition = () => {
     setBallPosition((prevPosition) => {
-      let nextX = prevPosition.x + velocity.x;
-      let nextY = prevPosition.y + velocity.y;
+      const timePassed = 16 / 1000; // Tiempo pasado en segundos desde el último fotograma
+      let nextX = prevPosition.x + velocity.x * timePassed;
+      let nextY = prevPosition.y + velocity.y * timePassed;
   
       // Limitar el movimiento dentro del contenedor
-      const containerWidth = document.querySelector(".container-ball").offsetWidth;
-      const containerHeight = document.querySelector(".container-ball").offsetHeight;
-      const ballWidth = 150;
-      const ballHeight = 150;
+      const containerRect = document.querySelector(".container-ball").getBoundingClientRect();
+      const ballWidth = 50;
+      const ballHeight = 50;
   
       // Lógica de rebote en los bordes horizontales del contenedor
-      if (nextX >= containerWidth - ballWidth || nextX <= 0) {
-        velocity.x = -velocity.x;
-        nextX = Math.min(containerWidth - ballWidth, Math.max(0, nextX));
+      if (nextX >= containerRect.right - ballWidth || nextX <= containerRect.left) {
+        // Invertir la dirección horizontal
+        nextX = prevPosition.x - velocity.x * timePassed; // Regresamos a la posición anterior
+        velocity.x = -velocity.x; // Invertimos la dirección
       }
   
       // Lógica de rebote en los bordes verticales del contenedor
-      if (nextY >= containerHeight - ballHeight || nextY <= 0) {
-        velocity.y = -velocity.y;
-        nextY = Math.min(containerHeight - ballHeight, Math.max(0, nextY));
+      if (nextY >= containerRect.bottom - ballHeight || nextY <= containerRect.top) {
+        // Invertir la dirección vertical
+        nextY = prevPosition.y - velocity.y * timePassed; // Regresamos a la posición anterior
+        velocity.y = -velocity.y; // Invertimos la dirección
       }
   
       return { x: nextX, y: nextY };
