@@ -3,6 +3,7 @@ import "../../styles/Game.css";
 import marcoMenu from "../../../assets/marco-menu.svg";
 import michi from "../../../assets/michi.svg";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // ESTAMBRES FIJOS (HUD)
 import estambreFijoNivel1 from "../../img/game/con-hilo/bola-estambre-verde.png";
@@ -11,12 +12,15 @@ import estambreFijoNivel3 from "../../img/game/con-hilo/bola-estambre-morada.png
 import estambreFijoNivel4 from "../../img/game/con-hilo/bola-estambre-naranja.png";
 import estambreFijoNivel5 from "../../img/game/con-hilo/bola-estambre-roja.png";
 
-// ESTAMBRES EN MOVIMIENTO (USADOS EN CADA NIVEL)
-import estambreNivel1 from "../../img/game/sin-hilo/bola-estambre-verde-sin-hilo.png";
-import estambreNivel2 from "../../img/game/sin-hilo/bola-estambre-azul-sin-hilo.png";
-import estambreNivel3 from "../../img/game/sin-hilo/bola-estambre-morada-sin-hilo.png";
-import estambreNivel4 from "../../img/game/sin-hilo/bola-estambre-naranja-sin-hilo.png";
-import estambreNivel5 from "../../img/game/sin-hilo/bola-estambre-roja-sin-hilo.png";
+// ESTAMBRES DE NIVELES
+import bolaEstambre1 from "../../img/game/sin-hilo/bola-estambre-1-sin-hilo.png";
+import bolaEstambre2 from "../../img/game/sin-hilo/bola-estambre-2-sin-hilo.png";
+import bolaEstambre3 from "../../img/game/sin-hilo/bola-estambre-3-sin-hilo.png";
+import bolaEstambre4 from "../../img/game/sin-hilo/bola-estambre-4-sin-hilo.png";
+import bolaEstambre5 from "../../img/game/sin-hilo/bola-estambre-5-sin-hilo.png";
+
+// OBSTÁCULOS
+import huesoPerro from "../../img/game/hueso-perro.png";
 
 const Game = () => {
   // Cambiar idioma a inglés o español
@@ -25,41 +29,87 @@ const Game = () => {
   const [opacity, setOpacity] = useState(25);
   // Bolas de estambre
   const [balls, setBalls] = useState([]);
-  // Posición de bolas de estambre
-  const [ballPosition, setBallPosition] = useState({ x: 200, y: 600 });
-  // Velocidad de rebote de la pelota
-  const [velocity, setVelocity] = useState({ x: 0, y: 0 });
-  // Área de juego para que la bola no se vaya al infinito
-  const [gameArea, setGameArea] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-  // Niveles
+  // Nivel actual
   const [level, setLevel] = useState(1);
   // Juego finalizado
   const [gameOver, setGameOver] = useState(false);
   // Juego iniciado
   const [gameStarted, setGameStarted] = useState(false);
-  // Ajustar la velocidad dependiendo del nivel
-  const [initialSpeed, setInitialSpeed] = useState(10);
-
+  // Estado de la primera pelota
+  const [firstBallVisible, setFirstBallVisible] = useState(false);
+  // Estado para controlar si el nivel ha sido completado
+  const [levelCompleted, setLevelCompleted] = useState(false);
+  // Obstáculos
+  const [obstacles, setObstacles] = useState([]);
+  // Juguetes recuperados
+  const [recoveredToys, setRecoveredToys] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
+  // Velocidad de niveles
   const levelSpeeds = {
-    1: 800,
-    2: 500,
-    3: 1000,
-    4: 2000,
-    5: 5000,
+    1: 2500,
+    2: 1700,
+    3: 1100,
+    4: 800,
+    5: 650,
+  };
+  // Juguetes por cada nivel
+  const levelImages = {
+    1: bolaEstambre1,
+    2: bolaEstambre2,
+    3: bolaEstambre3,
+    4: bolaEstambre4,
+    5: bolaEstambre5,
   };
 
   useEffect(() => {
     initializeBalls();
+    initializeObstacles();
   }, []);
 
   useEffect(() => {
-    if (gameOver) {
-      alert("¡Has recuperado todos los juguetes del gatito! ¡Victoria!");
+    if (gameStarted) {
+      // Inicializar obstáculos al comenzar el juego
+      initializeObstacles();
+  
+      // Mostrar la primera pelota al comienzo del juego
+      setFirstBallVisible(true);
+  
+      // Iniciar intervalos de movimiento para bolas y obstáculos
+      const ballInterval = setInterval(() => {
+        moveBall();
+      }, levelSpeeds[level]);
+  
+      const obstacleInterval = setInterval(() => {
+        moveObstacles();
+      }, 3000); // Intervalo para mover los obstáculos
+  
+      return () => {
+        clearInterval(ballInterval);
+        clearInterval(obstacleInterval);
+      };
     }
-  }, [gameOver]);
+  }, [gameStarted, level]);
+
+  useEffect(() => {
+    if (firstBallVisible) {
+      const ballInterval = setInterval(() => {
+        moveBall();
+      }, levelSpeeds[level]);
+      const obstacleInterval = setInterval(() => {
+        moveObstacles();
+      }, 3000);
+
+      return () => {
+        clearInterval(ballInterval);
+        clearInterval(obstacleInterval);
+      };
+    }
+  }, [firstBallVisible, level]);
 
   const initializeBalls = () => {
     // Definir arreglo con bolas de estambre y sus propiedades
@@ -71,6 +121,71 @@ const Game = () => {
       { id: 5, level: 5, recovered: false },
     ];
     setBalls(initialBalls);
+  };
+
+  const initializeObstacles = () => {
+    // Definir arreglo con los obstáculos según el nivel
+    let newObstacles = [];
+    switch (level) {
+      case 2:
+        newObstacles = [
+          { id: 1, level: 2, type: "huesoPerro", size: 50 },
+          { id: 2, level: 2, type: "huesoPerro", size: 50 },
+          { id: 3, level: 2, type: "huesoPerro", size: 50 },
+        ];
+        break;
+      case 3:
+        newObstacles = [
+          { id: 1, level: 3, type: "huesoPerro", size: 60 },
+          { id: 2, level: 3, type: "huesoPerro", size: 60 },
+          { id: 3, level: 3, type: "huesoPerro", size: 60 },
+          { id: 4, level: 3, type: "huesoPerro", size: 60 },
+        ];
+        break;
+      case 4:
+        newObstacles = [
+          { id: 1, level: 4, type: "huesoPerro", size: 75 },
+          { id: 2, level: 4, type: "huesoPerro", size: 75 },
+          { id: 3, level: 4, type: "huesoPerro", size: 75 },
+          { id: 4, level: 4, type: "huesoPerro", size: 75 },
+          { id: 5, level: 4, type: "huesoPerro", size: 75 },
+        ];
+        break;
+      case 5:
+        newObstacles = [
+          { id: 1, level: 5, type: "huesoPerro", size: 70 },
+          { id: 2, level: 5, type: "huesoPerro", size: 70 },
+          { id: 3, level: 5, type: "huesoPerro", size: 70 },
+          { id: 4, level: 5, type: "huesoPerro", size: 70 },
+          { id: 5, level: 5, type: "huesoPerro", size: 70 },
+          { id: 6, level: 5, type: "huesoPerro", size: 70 },
+          { id: 7, level: 5, type: "huesoPerro", size: 70 },
+          { id: 8, level: 5, type: "huesoPerro", size: 70 },
+        ];
+        break;
+      default:
+        break;
+    }
+    setObstacles(newObstacles);
+  };
+
+  const moveObstacles = () => {
+    const newObstacles = obstacles.map((obstacle) => {
+      switch (obstacle.type) {
+        case "huesoPerro":
+          return {
+            ...obstacle,
+            position: {
+              x: Math.random() * (window.innerWidth - 150),
+              y: Math.random() * (window.innerHeight - 150),
+            },
+            rotation: Math.random() * 360,
+          };
+        default:
+          return obstacle;
+      }
+    });
+    setObstacles(newObstacles);
   };
 
   const handleBallClick = (ballId) => {
@@ -88,55 +203,106 @@ const Game = () => {
     if (allRecovered) {
       setGameOver(true);
     }
+
+    // Marcar el juguete como recuperado
+    setRecoveredToys({ ...recoveredToys, [ballId]: true });
+
+    // Condiciones de victoria
+    if (level === 1 && ballId === 1) {
+      // Mostrar mensaje con SweetAlert2
+      Swal.fire({
+        title: "¡Primer juguete recuperado!",
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Siguiente nivel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Pasar al siguiente nivel
+          setLevel(2);
+          setLevelCompleted(true);
+        }
+      });
+    } else if (level === 2 && ballId === 2) {
+      Swal.fire({
+        title: "¡Segundo juguete recuperado!",
+        text: "El gatito te mira con admiración...",
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Siguiente nivel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Pasar al siguiente nivel
+          setLevel(3);
+          setLevelCompleted(true);
+        }
+      });
+    } else if (level === 3 && ballId === 3) {
+      Swal.fire({
+        title: "¡Tercer juguete recuperado!",
+        text: "¡El gatito no puede creer tus reflejos!",
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Siguiente nivel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Pasar al siguiente nivel
+          setLevel(4);
+          setLevelCompleted(true);
+        }
+      });
+    } else if (level === 4 && ballId === 4) {
+      Swal.fire({
+        title: "¡Cuarto juguete recuperado!",
+        text: "¡Que huesos más molestos!",
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Siguiente nivel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Pasar al siguiente nivel
+          setLevel(5);
+          setLevelCompleted(true);
+        }
+      });
+    } else if (level === 5 && ballId === 5) {
+      Swal.fire({
+        title: "¡Victoria! El michi está feliz",
+        text: "Este gatito te apreciará y recordará de por vida... ¡¡Gracias!!",
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Volver al menú",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Pasar al siguiente nivel
+          setLevel(5);
+          setLevelCompleted(true);
+        }
+      });
+    }
   };
 
   const startGame = () => {
-    const randomAngle = Math.random() * Math.PI * 2;
-    const speed = levelSpeeds[level] || levelSpeeds[1];
-    setVelocity({ x: Math.cos(randomAngle) * speed, y: Math.sin(randomAngle) * speed });
     setGameStarted(true);
     setOpacity(75);
   };
 
-
-  const updateBallPosition = () => {
-    setBallPosition((prevPosition) => {
-      const timePassed = 16 / 1000; // Tiempo pasado en segundos desde el último fotograma
-      let nextX = prevPosition.x + velocity.x * timePassed;
-      let nextY = prevPosition.y + velocity.y * timePassed;
-  
-      // Limitar el movimiento dentro del contenedor
-      const containerRect = document.querySelector(".container-ball").getBoundingClientRect();
-      const ballWidth = 50;
-      const ballHeight = 50;
-  
-      // Lógica de rebote en los bordes horizontales del contenedor
-      if (nextX >= containerRect.right - ballWidth || nextX <= containerRect.left) {
-        // Invertir la dirección horizontal
-        nextX = prevPosition.x - velocity.x * timePassed; // Regresamos a la posición anterior
-        velocity.x = -velocity.x; // Invertimos la dirección
+  const moveBall = () => {
+    // Mover la pelota a una nueva posición aleatoria
+    const newBalls = balls.map((ball) => {
+      if (ball.level === level) {
+        return {
+          ...ball,
+          position: {
+            x: Math.random() * (window.innerWidth - 50),
+            y: Math.random() * (window.innerHeight - 50),
+          },
+        };
       }
-  
-      // Lógica de rebote en los bordes verticales del contenedor
-      if (nextY >= containerRect.bottom - ballHeight || nextY <= containerRect.top) {
-        // Invertir la dirección vertical
-        nextY = prevPosition.y - velocity.y * timePassed; // Regresamos a la posición anterior
-        velocity.y = -velocity.y; // Invertimos la dirección
-      }
-  
-      return { x: nextX, y: nextY };
+      return ball;
     });
+
+    setBalls(newBalls);
   };
-
-  useEffect(() => {
-    if (gameStarted) {
-      const interval = setInterval(() => {
-        updateBallPosition();
-      }, 16);
-
-      return () => clearInterval(interval);
-    }
-  }, [gameStarted]);
 
   return (
     <div className="container-game">
@@ -151,31 +317,31 @@ const Game = () => {
         <img
           src={estambreFijoNivel1}
           alt=""
-          className={opacity >= 25 ? "opacity-25" : "opacity-75"}
+          className={recoveredToys[1] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(1)}
         />
         <img
           src={estambreFijoNivel2}
           alt=""
-          className={opacity >= 25 ? "opacity-25" : "opacity-75"}
+          className={recoveredToys[2] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(2)}
         />
         <img
           src={estambreFijoNivel3}
           alt=""
-          className={opacity >= 25 ? "opacity-25" : "opacity-75"}
+          className={recoveredToys[3] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(3)}
         />
         <img
           src={estambreFijoNivel4}
           alt=""
-          className={opacity >= 25 ? "opacity-25" : "opacity-75"}
+          className={recoveredToys[4] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(4)}
         />
         <img
           src={estambreFijoNivel5}
           alt=""
-          className={opacity >= 25 ? "opacity-25" : "opacity-75"}
+          className={recoveredToys[5] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(5)}
         />
       </div>
@@ -186,16 +352,44 @@ const Game = () => {
         </button>
       )}
 
-      <div className="container-ball">
-        {gameStarted && (
-          <img
-            src={estambreNivel1}
-            alt=""
-            className="estambre-movimiento opacity-75"
-            style={{ left: `${ballPosition.x}px`, top: `${ballPosition.y}px` }}
-          />
-        )}
-      </div>
+      {gameStarted &&
+        balls.map((ball) => {
+          if (ball.level === level) {
+            return (
+              <img
+                key={ball.id}
+                src={levelImages[ball.level]} // Usa levelImages para obtener la ruta de la imagen
+                alt=""
+                className="estambre-movimiento opacity-75"
+                style={{
+                  left: ball.position?.x ?? "-50%",
+                  top: ball.position?.y ?? "-50%",
+                }}
+                width="50px"
+                height="50px"
+                onClick={() => handleBallClick(ball.id)}
+              />
+            );
+          } else {
+            return null; // No renderizar la pelota si no es del nivel actual
+          }
+        })}
+
+      {obstacles.map((obstacle) => (
+        <img
+          key={obstacle.id}
+          src={huesoPerro}
+          alt="Obstacle"
+          className="hueso-perro"
+          style={{
+            left: obstacle.position?.x ?? "-50%",
+            top: obstacle.position?.y  ?? "-50%",
+            transform: `rotate(${obstacle.rotation}deg)`,
+          }}
+          width={`${obstacle.size + 20}px`}
+          height={`${obstacle.size}px`}
+        />
+      ))}
     </div>
   );
 };
