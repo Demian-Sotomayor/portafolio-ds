@@ -4,6 +4,7 @@ import marcoMenu from "../../../assets/marco-menu.svg";
 import michi from "../../../assets/michi.svg";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 // ESTAMBRES FIJOS (HUD)
 import estambreFijoNivel1 from "../../img/game/con-hilo/bola-estambre-verde.png";
@@ -20,9 +21,16 @@ import bolaEstambre4 from "../../img/game/sin-hilo/bola-estambre-4-sin-hilo.png"
 import bolaEstambre5 from "../../img/game/sin-hilo/bola-estambre-5-sin-hilo.png";
 
 // OBSTÁCULOS
-import huesoPerro from "../../img/game/hueso-perro.png";
+import pescadoNivel1 from "../../img/game/pescados/pescado-lvl-1.png";
+import pescadoNivel2 from "../../img/game/pescados/pescado-lvl-2.png";
+import pescadoNivel3 from "../../img/game/pescados/pescado-lvl-3.png";
+import pescadoNivel4 from "../../img/game/pescados/pescado-lvl-4.png";
+import pescadoNivel5 from "../../img/game/pescados/pescado-lvl-5.png";
+
+import happy from "../../img/happy-cat.gif"
 
 const Game = () => {
+  const navigate = useNavigate();
   // Cambiar idioma a inglés o español
   const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "eng");
   // Temporalmente manejando la opacidad así
@@ -39,8 +47,6 @@ const Game = () => {
   const [firstBallVisible, setFirstBallVisible] = useState(false);
   // Estado para controlar si el nivel ha sido completado
   const [levelCompleted, setLevelCompleted] = useState(false);
-  // Obstáculos
-  const [obstacles, setObstacles] = useState([]);
   // Juguetes recuperados
   const [recoveredToys, setRecoveredToys] = useState({
     1: false,
@@ -51,11 +57,11 @@ const Game = () => {
   });
   // Velocidad de niveles
   const levelSpeeds = {
-    1: 2500,
-    2: 1700,
-    3: 1100,
-    4: 800,
-    5: 650,
+    1: 2000,
+    2: 1200,
+    3: 800,
+    4: 650,
+    5: 600,
   };
   // Juguetes por cada nivel
   const levelImages = {
@@ -65,32 +71,43 @@ const Game = () => {
     4: bolaEstambre4,
     5: bolaEstambre5,
   };
+  // Imágenes de los obstáculos
+  const obstacleImages = {
+    1: pescadoNivel1,
+    2: pescadoNivel2,
+    3: pescadoNivel3,
+    4: pescadoNivel4,
+    5: pescadoNivel5,
+  };
+  // Tamaños de los obstáculos por nivel
+  const obstacleSizes = {
+    1: { width: 100, height: 70 },
+    2: { width: 110, height: 80 },
+    3: { width: 120, height: 90 },
+    4: { width: 130, height: 100 },
+    5: { width: 120, height: 90 },
+  };
+  // Tamaño pelota
+  const baseBallSize = 50;
+  // Calcular tamaño de pelota por nivel
+  const ballSize = baseBallSize - (level - 1) * 3;
 
   useEffect(() => {
     initializeBalls();
-    initializeObstacles();
   }, []);
 
   useEffect(() => {
     if (gameStarted) {
-      // Inicializar obstáculos al comenzar el juego
-      initializeObstacles();
-  
       // Mostrar la primera pelota al comienzo del juego
       setFirstBallVisible(true);
-  
+
       // Iniciar intervalos de movimiento para bolas y obstáculos
       const ballInterval = setInterval(() => {
         moveBall();
       }, levelSpeeds[level]);
-  
-      const obstacleInterval = setInterval(() => {
-        moveObstacles();
-      }, 3000); // Intervalo para mover los obstáculos
-  
+
       return () => {
         clearInterval(ballInterval);
-        clearInterval(obstacleInterval);
       };
     }
   }, [gameStarted, level]);
@@ -100,13 +117,8 @@ const Game = () => {
       const ballInterval = setInterval(() => {
         moveBall();
       }, levelSpeeds[level]);
-      const obstacleInterval = setInterval(() => {
-        moveObstacles();
-      }, 3000);
-
       return () => {
         clearInterval(ballInterval);
-        clearInterval(obstacleInterval);
       };
     }
   }, [firstBallVisible, level]);
@@ -121,71 +133,6 @@ const Game = () => {
       { id: 5, level: 5, recovered: false },
     ];
     setBalls(initialBalls);
-  };
-
-  const initializeObstacles = () => {
-    // Definir arreglo con los obstáculos según el nivel
-    let newObstacles = [];
-    switch (level) {
-      case 2:
-        newObstacles = [
-          { id: 1, level: 2, type: "huesoPerro", size: 50 },
-          { id: 2, level: 2, type: "huesoPerro", size: 50 },
-          { id: 3, level: 2, type: "huesoPerro", size: 50 },
-        ];
-        break;
-      case 3:
-        newObstacles = [
-          { id: 1, level: 3, type: "huesoPerro", size: 60 },
-          { id: 2, level: 3, type: "huesoPerro", size: 60 },
-          { id: 3, level: 3, type: "huesoPerro", size: 60 },
-          { id: 4, level: 3, type: "huesoPerro", size: 60 },
-        ];
-        break;
-      case 4:
-        newObstacles = [
-          { id: 1, level: 4, type: "huesoPerro", size: 75 },
-          { id: 2, level: 4, type: "huesoPerro", size: 75 },
-          { id: 3, level: 4, type: "huesoPerro", size: 75 },
-          { id: 4, level: 4, type: "huesoPerro", size: 75 },
-          { id: 5, level: 4, type: "huesoPerro", size: 75 },
-        ];
-        break;
-      case 5:
-        newObstacles = [
-          { id: 1, level: 5, type: "huesoPerro", size: 70 },
-          { id: 2, level: 5, type: "huesoPerro", size: 70 },
-          { id: 3, level: 5, type: "huesoPerro", size: 70 },
-          { id: 4, level: 5, type: "huesoPerro", size: 70 },
-          { id: 5, level: 5, type: "huesoPerro", size: 70 },
-          { id: 6, level: 5, type: "huesoPerro", size: 70 },
-          { id: 7, level: 5, type: "huesoPerro", size: 70 },
-          { id: 8, level: 5, type: "huesoPerro", size: 70 },
-        ];
-        break;
-      default:
-        break;
-    }
-    setObstacles(newObstacles);
-  };
-
-  const moveObstacles = () => {
-    const newObstacles = obstacles.map((obstacle) => {
-      switch (obstacle.type) {
-        case "huesoPerro":
-          return {
-            ...obstacle,
-            position: {
-              x: Math.random() * (window.innerWidth - 150),
-              y: Math.random() * (window.innerHeight - 150),
-            },
-            rotation: Math.random() * 360,
-          };
-        default:
-          return obstacle;
-      }
-    });
-    setObstacles(newObstacles);
   };
 
   const handleBallClick = (ballId) => {
@@ -209,26 +156,25 @@ const Game = () => {
 
     // Condiciones de victoria
     if (level === 1 && ballId === 1) {
-      // Mostrar mensaje con SweetAlert2
-      Swal.fire({
-        title: "¡Primer juguete recuperado!",
-        allowOutsideClick: false,
-        icon: "success",
-        confirmButtonText: "Siguiente nivel",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Pasar al siguiente nivel
-          setLevel(2);
-          setLevelCompleted(true);
-        }
-      });
+        Swal.fire({
+          title: `${idioma === "esp" ? "¡Primer juguete recuperado!" : "First toy recovered!"}`,
+          allowOutsideClick: false,
+          icon: "success",
+          confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Pasar al siguiente nivel
+            setLevel(2);
+            setLevelCompleted(true);
+          }
+        });
     } else if (level === 2 && ballId === 2) {
       Swal.fire({
-        title: "¡Segundo juguete recuperado!",
-        text: "El gatito te mira con admiración...",
+        title: `${idioma === "esp" ? "¡Segundo juguete recuperado!" : "Second toy recovered!"}`,
+        text: `${idioma === "esp" ? "El gatito te mira con admiración..." : "The kitten looks at you with admiration..."}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: "Siguiente nivel",
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -238,11 +184,11 @@ const Game = () => {
       });
     } else if (level === 3 && ballId === 3) {
       Swal.fire({
-        title: "¡Tercer juguete recuperado!",
-        text: "¡El gatito no puede creer tus reflejos!",
+        title: `${idioma === "esp" ? "¡Tercer juguete recuperado!" : "Third toy recovered!"}`,
+        text: `${idioma === "esp" ? "¡El gatito no puede creer tus reflejos!" : "The kitten can't believe your reflexes!!"}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: "Siguiente nivel",
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -252,11 +198,11 @@ const Game = () => {
       });
     } else if (level === 4 && ballId === 4) {
       Swal.fire({
-        title: "¡Cuarto juguete recuperado!",
-        text: "¡Que huesos más molestos!",
+        title: `${idioma === "esp" ? "¡Cuarto juguete recuperado!" : "Fourth toy recovered!"}`,
+        text: `${idioma === "esp" ? '"¿Por qué hay tanta comida volando?"' : '"Why is there so much food flying around?"'}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: "Siguiente nivel",
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -266,18 +212,20 @@ const Game = () => {
       });
     } else if (level === 5 && ballId === 5) {
       Swal.fire({
-        title: "¡Victoria! El michi está feliz",
-        text: "Este gatito te apreciará y recordará de por vida... ¡¡Gracias!!",
+        title: `${idioma === "esp" ? "¡Victoria! El michi está feliz" : "Victory! The kitten is happy!"}`,
+        text: `${idioma === "esp" ? "Este gatito te apreciará y recordará de por vida... ¡¡Gracias!!" : "This kitten will appreciate and remember you for a lifetime... Thank you!!"}`,
         allowOutsideClick: false,
-        icon: "success",
-        confirmButtonText: "Volver al menú",
+        html: `<img src=${happy} alt="GIF" width="100px" height="auto" />`,
+        confirmButtonText: `${idioma === "esp" ? "Volver al menú" : "Back to home"}`,
+        showCancelButton: true,
+        cancelButtonText: `${idioma === "esp" ? "Volver a jugar" : "Play again"}`
       }).then((result) => {
         if (result.isConfirmed) {
-          // Pasar al siguiente nivel
-          setLevel(5);
-          setLevelCompleted(true);
+          navigate("/")
+        } else {
+          window.location.reload(false)          
         }
-      });
+      })
     }
   };
 
@@ -346,12 +294,7 @@ const Game = () => {
         />
       </div>
 
-      {!gameOver && !gameStarted && (
-        <button className="start-game-button" onClick={startGame}>
-          <i className="fa-solid fa-play"></i>
-        </button>
-      )}
-
+      {/* Renderizar pelotas */}
       {gameStarted &&
         balls.map((ball) => {
           if (ball.level === level) {
@@ -364,9 +307,9 @@ const Game = () => {
                 style={{
                   left: ball.position?.x ?? "-50%",
                   top: ball.position?.y ?? "-50%",
+                  width: `${ballSize}px`,
+                  height: `${ballSize}px`
                 }}
-                width="50px"
-                height="50px"
                 onClick={() => handleBallClick(ball.id)}
               />
             );
@@ -375,21 +318,103 @@ const Game = () => {
           }
         })}
 
-      {obstacles.map((obstacle) => (
-        <img
-          key={obstacle.id}
-          src={huesoPerro}
-          alt="Obstacle"
-          className="hueso-perro"
-          style={{
-            left: obstacle.position?.x ?? "-50%",
-            top: obstacle.position?.y  ?? "-50%",
-            transform: `rotate(${obstacle.rotation}deg)`,
-          }}
-          width={`${obstacle.size + 20}px`}
-          height={`${obstacle.size}px`}
-        />
-      ))}
+      {/* Botón de inicio del juego */}
+      {!gameOver && !gameStarted && (
+        <button className="start-game-button" onClick={startGame}>
+          <i className="fa-solid fa-play"></i>
+        </button>
+      )}
+
+      {/* Renderizar obstáculos */}
+      {gameStarted && level >= 1 && level <= 5 && (
+        <div className="obstacles">
+          {/* Condición para renderizar obstáculos según el nivel */}
+          {level >= 1 && (
+            <>
+              <img
+                src={obstacleImages[level]}
+                alt=""
+                className="obstaculo-default"
+                style={{
+                  width: `${obstacleSizes[level].width}px`,
+                  height: `${obstacleSizes[level].height}px`,
+                }}
+              />
+              <img
+                src={obstacleImages[level]}
+                alt=""
+                className="obstaculo-default"
+                style={{
+                  width: `${obstacleSizes[level].width}px`,
+                  height: `${obstacleSizes[level].height}px`,
+                }}
+              />
+              <img
+                src={obstacleImages[level]}
+                alt=""
+                className="obstaculo-default"
+                style={{
+                  width: `${obstacleSizes[level].width}px`,
+                  height: `${obstacleSizes[level].height}px`,
+                }}
+              />
+              <img
+                src={obstacleImages[level]}
+                alt=""
+                className="obstaculo-default"
+                style={{
+                  width: `${obstacleSizes[level].width}px`,
+                  height: `${obstacleSizes[level].height}px`,
+                }}
+              />
+            </>
+          )}
+          {level >= 2 && (
+            <img
+              src={obstacleImages[level]}
+              alt=""
+              className="obstaculo-extra"
+              style={{
+                width: `${obstacleSizes[level].width}px`,
+                height: `${obstacleSizes[level].height}px`,
+              }}
+            />
+          )}
+          {level >= 3 && (
+            <img
+              src={obstacleImages[level]}
+              alt=""
+              className="obstaculo-extra"
+              style={{
+                width: `${obstacleSizes[level].width}px`,
+                height: `${obstacleSizes[level].height}px`,
+              }}
+            />
+          )}
+          {level >= 4 && (
+            <img
+              src={obstacleImages[level]}
+              alt=""
+              className="obstaculo-extra"
+              style={{
+                width: `${obstacleSizes[level].width}px`,
+                height: `${obstacleSizes[level].height}px`,
+              }}
+            />
+          )}
+          {level === 5 && (
+            <img
+              src={obstacleImages[level]}
+              alt=""
+              className="obstaculo-extra"
+              style={{
+                width: `${obstacleSizes[level].width}px`,
+                height: `${obstacleSizes[level].height}px`,
+              }}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

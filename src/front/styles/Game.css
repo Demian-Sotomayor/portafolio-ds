@@ -12,6 +12,7 @@
     top: 72%;
     left: 10%;
     pointer-events: none;
+    z-index: 500;
 }
 .estambres-recuperados img {
     width: 150px;
@@ -46,9 +47,69 @@
     transition: opacity 0.5s ease;
 }
 
-.hueso-perro {
+/* ----- // OBSTÁCULOS // ----- */
+
+.obstaculo-default {
     position: absolute;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 60%;
 }
+.obstaculo-default:nth-of-type(1) {
+    rotate: 45deg;
+    top: 50%;
+    left: 10%;
+}
+.obstaculo-default:nth-of-type(2) {
+    rotate: -60deg;
+    top: 20%;
+    left: 80%;
+}
+.obstaculo-default:nth-of-type(3) {
+    rotate: 75deg;
+    top: 80%;
+    left: 60%;
+}
+.obstaculo-default:nth-of-type(4) {
+    rotate: -15deg;
+    top: 20%;
+    left: 30%;
+}
+.obstaculo-extra {
+    position: absolute;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 60%;
+}
+.obstaculo-extra:nth-last-child(1) {
+    rotate: 125deg;
+    top: 20%;
+    left: 10%;
+    width: 85px !important;
+    height: 60px !important;
+}
+.obstaculo-extra:nth-last-child(2) {
+    rotate: 45deg;
+    top: 50%;
+    left: 90%;
+    width: 60px !important;
+    height: 40px !important;
+}
+.obstaculo-extra:nth-last-child(3) {
+    rotate: 125deg;
+    top: 60%;
+    left: 40%;
+    width: 50px !important;
+    height: 35px !important;
+}
+.obstaculo-extra:nth-last-child(4) {
+    rotate: 30deg;
+    top: 30%;
+    left: 50%;
+    width: 90px !important;
+    height: 70px !important;
+}
+
 
 /* ----- // MENÚ // ----- */
 
@@ -69,6 +130,7 @@
     right: 7%;
     width: 21%;
     pointer-events: none;
+    z-index: 10000;
 }
 
 .start-game-button {
@@ -163,6 +225,24 @@
     .estambres-recuperados img {
         width: 110px;
     }
+    .obstaculo-default:nth-of-type(1) {
+        width: 100px !important;
+        height: 70px !important;
+    }
+    .obstaculo-default:nth-of-type(2) {
+        width: 110px !important;
+        height: 80px !important;
+    }
+    .obstaculo-default:nth-of-type(3) {
+        left: 55%;
+        top: 70%;
+        width: 90px !important;
+        height: 60px !important;
+    }
+    .obstaculo-default:nth-of-type(4) {
+        width: 90px !important;
+        height: 60px !important;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -184,6 +264,19 @@
     .michi-menu-game {
         right: 3%;
     }
+
+    .obstaculo-default:nth-of-type(1) {
+        width: 90px !important;
+        height: 65px !important;
+        left: 15%;
+    }
+    .obstaculo-extra:nth-last-child(1) {
+        rotate: 125deg;
+        top: 20%;
+        left: 15%;
+        width: 70px !important;
+        height: 50px !important;
+    }
 }
 
 
@@ -195,6 +288,17 @@
     .button-back-home {
         left: 7%;
     }
+    .obstaculo-extra:nth-last-child(1), .obstaculo-extra:nth-last-child(2), .obstaculo-extra:nth-last-child(3), .obstaculo-extra:nth-last-child(4) {
+        width: 50px !important;
+        height: 35px !important;
+    }
+    .obstaculo-default:nth-of-type(1), .obstaculo-default:nth-of-type(2), .obstaculo-default:nth-of-type(3), .obstaculo-default:nth-of-type(4) {
+        width: 75px !important;
+        height: 50px !important;
+    }
+    .obstaculo-extra:nth-last-child(2) {
+        left: 80%;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -205,6 +309,39 @@
     .estambres-recuperados img {
         width: 75px;
         margin-bottom: 10px;
+    }
+
+    .obstaculo-default:nth-of-type(1) {
+        top: 80%;
+        width: 70px !important;
+        height: 45px !important;
+    }
+    .obstaculo-default:nth-of-type(2) {
+        width: 60px !important;
+        height: 45px !important;
+    }
+    .obstaculo-default:nth-of-type(3) {
+        width: 50px !important;
+        height: 35px !important;
+    }
+    .obstaculo-extra:nth-last-child(1) {
+        top: 5%;
+        left: 40%;
+        width: 50px !important;
+        height: 35px !important;
+    }
+    .obstaculo-extra:nth-last-child(3) {
+        top: 55%;
+        left: 30%;
+        width: 50px !important;
+        height: 35px !important;
+    }
+    .obstaculo-extra:nth-last-child(4) {
+        rotate: 30deg;
+        top: 38%;
+        left: 50%;
+        width: 40px !important;
+        height: 30px !important;
     }
 }
 
@@ -228,5 +365,10 @@
 
     .estambres-recuperados img {
         width: 120px;
+    }
+
+    .obstaculo-default:nth-of-type(1), .obstaculo-default:nth-of-type(2), .obstaculo-default:nth-of-type(3), .obstaculo-default:nth-of-type(4) {
+        width: 110px !important;
+        height: 80px !important;
     }
 }
