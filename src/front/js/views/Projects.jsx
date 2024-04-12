@@ -1,9 +1,17 @@
 import "../../styles/Projects.css";
-import empty from "../../img/portafolio/logo.jpg";
 import michiEng from "../../img/portafolio/michi-eng.png";
 import michiEsp from "../../img/portafolio/michi-esp.png";
 import Swal from "sweetalert2";
 import lineaProjects from "../../../assets/linea-lado-a-lado.svg";
+import bt1 from "../../img/projects/battleship/1-bt.jpeg"
+import bt2 from "../../img/projects/battleship/2-bt.jpeg"
+import bt3 from "../../img/projects/battleship/3-bt.jpeg"
+import rdv1 from "../../img/projects/elRinconDelVino/1.jpeg"
+import rdv2 from "../../img/projects/elRinconDelVino/2.jpeg"
+import rdv3 from "../../img/projects/elRinconDelVino/3.jpeg"
+import sw1 from "../../img/projects/star-wars/1-sw.jpg"
+import sw2 from "../../img/projects/star-wars/2-sw.jpg"
+import sw3 from "../../img/projects/star-wars/3-sw.jpg"
 
 const Projects = ({idioma}) => {
 
@@ -66,9 +74,9 @@ const Projects = ({idioma}) => {
             <div className="carousel-inner">
               <div className="carousel-item active" data-bs-interval="10000">
                 <div className="container-img-carousel">
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
+                  <img src={rdv1} className="img-carousel" alt="..." />
+                  <img src={rdv2} className="img-carousel" alt="..." />
+                  <img src={rdv3} className="img-carousel" alt="..." />
                 </div>
                 {/* INFO PRIMER PROYECTO */}
                 <div className="carousel-caption">
@@ -80,9 +88,9 @@ const Projects = ({idioma}) => {
               </div>
               <div className="carousel-item" data-bs-interval="2000">
                 <div className="container-img-carousel">
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
+                  <img src={bt1} className="img-carousel" alt="..." />
+                  <img src={bt2} className="img-carousel" alt="..." />
+                  <img src={bt3} className="img-carousel" alt="..." />
                 </div>
                 {/* INFO SEGUNDO PROYECTO */}
                 <div className="carousel-caption">
@@ -92,14 +100,14 @@ const Projects = ({idioma}) => {
               </div>
               <div className="carousel-item">
                 <div className="container-img-carousel">
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
-                  <img src={empty} className="img-carousel" alt="..." />
+                  <img src={sw1} className="img-carousel" alt="..." />
+                  <img src={sw2} className="img-carousel" alt="..." />
+                  <img src={sw3} className="img-carousel" alt="..." />
                 </div>
                 {/* INFO TERCER PROYECTO */}
                 <div className="carousel-caption">
-                  <h5>&#34;Tercer proyecto&#34;</h5>
-                  <p className="opacity-75">Tecnologías utilizadas</p>
+                  <h5>&#34;Star wars blog&#34;</h5>
+                  <p className="opacity-75">React.js, Bootstrap, CSS3</p>
                 </div>
               </div>
               <div className="carousel-item">
