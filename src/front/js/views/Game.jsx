@@ -252,12 +252,29 @@ const Game = () => {
     setBalls(newBalls);
   };
 
+  const handleBackHome = () => {
+    Swal.fire({
+      title: `${idioma === "esp" ? "¿Estás seguro?" : "Are you sure?"}`,
+      text: `${idioma === "esp" ? '¡Si clickeaste por error, presiona "no"!' : `If you clicked by mistake, just press "no"!`}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `${idioma === "esp" ? "Volver a inicio" : "Back to home"}`,
+      cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/")
+      }
+    });
+  }
+
   return (
     <div className="container-game">
-      <Link to="/" className="button-back-home">
+      <button className="button-back-home" onClick={handleBackHome}>
         <i className="fa-solid fa-arrow-left me-2"></i>
         {idioma === "esp" ? "Inicio" : "Home"}
-      </Link>
+      </button>
       <img src={michi} alt="" className="michi-menu-game" />
       <img src={marcoMenu} alt="" className="marco-menu-game" />
 
