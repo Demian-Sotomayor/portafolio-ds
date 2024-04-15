@@ -9,15 +9,19 @@ import Menu from "../components/Menu";
 const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "eng");
-
   return (
     <>
-      <Menu setIsActive={setIsActive} isActive={isActive} setIdioma={setIdioma} idioma={idioma} />
+      <Menu
+        setIsActive={setIsActive}
+        isActive={isActive}
+        setIdioma={setIdioma}
+        idioma={idioma}
+      />
       <div className={`m-5 content ${isActive ? "fade-out" : ""}`}>
-        <Home idioma={idioma}  />
-        <About idioma={idioma}  />
-        <Projects idioma={idioma}  />
-       <Footer idioma={idioma}  />
+        <Home idioma={idioma} />
+        <About idioma={idioma} />
+        <Projects idioma={idioma} />
+        <Footer idioma={idioma} />
       </div>
     </>
   );

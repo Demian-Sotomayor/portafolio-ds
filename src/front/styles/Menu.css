@@ -11,6 +11,7 @@
     z-index: 3;
     max-height: 1250px;
     box-shadow: 0px 0px 10px 1px var(--light-color);
+    background-color: var(--main-bg-color);
 }
 
 .menu {
@@ -82,7 +83,7 @@
     width: 21%;
 }
 
-.btn-menu {
+.btn-menu, .btn-menu-projects {
     position: absolute;
     top: 60%;
     left: 10%;
@@ -93,10 +94,15 @@
     background: transparent;
     color: white;
     box-shadow: 0px 0px 8px var(--light-color);
-    width: 15%;
-  }
+    width: 13%;
+}
+
+.btn-menu-projects {
+    top: 60%;
+    left: 25%;
+}
   
-.btn-menu:hover {
+.btn-menu:hover, .btn-menu-projects:hover {
   box-shadow: 0px 0px 18px var(--light-color);
   transition: 1s;
   background: rgb(44, 48, 60);
@@ -143,9 +149,14 @@
         width: 24%;
     }
 
-    .btn-menu {
-        width: 25%;
+    .btn-menu, .btn-menu-projects {
+        width: 18%;
     }
+
+    .btn-menu-projects {
+        left: 32%;
+    }
+
 }
 
 @media screen and (max-width: 1150px) {
@@ -163,8 +174,12 @@
         width: 28%;
     }
 
-    .btn-menu {
-        width: 30%;
+    .btn-menu, .btn-menu-projects {
+        width: 21%;
+    }
+
+    .btn-menu-projects {
+        left: 35%;
     }
 }
 
@@ -180,9 +195,18 @@
         top: 30%;
     }
 
+    .btn-menu, .btn-menu-projects {
+        width: 25%;
+    }
+
     .btn-menu {
         left: 15%;
         margin-top: 0px;
+    }
+
+    .btn-menu-projects {
+        left: 15%;
+        top: 65%;
     }
 }
 
@@ -200,10 +224,9 @@
         font-size: 23px;
         opacity: 50%;
     }
-    
-    .btn-menu {
-        left: 15%;
-        margin-top: 50px;
+
+    .btn-menu, .btn-menu-projects {
+        font-size: 22px;
     }
 }
 
@@ -211,6 +234,7 @@
     .text-menu {
         left: 10%;
         width: 80%;
+        top: 24%;
     }
 
     .btn-menu {
@@ -221,6 +245,11 @@
         right: 1%;
         width: 45%;
     }
+
+    .btn-menu, .btn-menu-projects {
+        padding: 8px 30px;
+        width: 35%;
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -229,13 +258,16 @@
         font-size: 24px;
         left: 0%;
         padding: 20px;
-        top: 30%;
+        top: 22%;
+    }
+
+    .btn-menu, .btn-menu-projects {
+        left: 10%;
+        width: 40%;
     }
 
     .btn-menu {
-        width: 40%;
-        left: 10%;
-        margin-top: 40px;
+        margin-top: 10px;
     }
 }
 
@@ -257,9 +289,18 @@
         top: 30%;
     }
 
-    .btn-menu {
+    .btn-menu, .btn-menu-projects {
         font-size: 30px;
         width: 30%;
+    }
+
+    .btn-menu {
+        top: 55%;
+    }
+
+    .btn-menu-projects {
+        top: 68%;
+        left: 10%;
     }
 
     .michi-menu {

@@ -34,6 +34,10 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
     navigate("/game")
   }
 
+  const handleProjects = () => {
+    navigate("/projects")
+  }
+
   return (
     <>
       <div className={`menu ${isActive ? "active" : ""}`}>
@@ -49,7 +53,7 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
       {/* Modal */}
       <div className={`${isActive ? "menu-opened" : "opacity-0"}`}>
         <img src={marcoMenu} alt="" className="marco-menu" />
-        <h2 className="text-menu">{idioma === "esp" ? "¡Con el tiempo traeré más secciones! Por ahora puedes ayudar a este gatito en un minijuego que hice." : "Over time I will bring more sections! For now help this kitten in this minigame I made!"}</h2>
+        <h2 className="text-menu">{idioma === "esp" ? "¡Con el tiempo traeré más secciones! Por ahora puedes ver mis proyectos o ayudar a este gatito en un minijuego que hice." : "Over time I will bring more sections! For now you can check out my projects or help this kitten in this minigame I made."}</h2>
         <img src={michi} alt="" className="michi-menu" />
         <button
             type="button"
@@ -57,6 +61,13 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
             onClick={handleClickGame}
           >
             {idioma === "esp" ? "¡Ayuda!" : "Help!"}
+          </button>
+          <button
+            type="button"
+            className="btn-menu-projects"
+            onClick={handleProjects}
+          >
+            {idioma === "esp" ? "Proyectos" : "Projects"}
           </button>
       </div>
     </>

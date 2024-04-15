@@ -12,24 +12,14 @@ import rdv3 from "../../img/projects/elRinconDelVino/3.jpeg"
 import sw1 from "../../img/projects/star-wars/1-sw.jpg"
 import sw2 from "../../img/projects/star-wars/2-sw.jpg"
 import sw3 from "../../img/projects/star-wars/3-sw.jpg"
+import { useNavigate } from "react-router-dom";
 
 const Projects = ({idioma}) => {
 
-  const handleAlertMoreProjects = () => {
+  const navigate = useNavigate();
 
-    if (idioma === "esp") {
-      Swal.fire({
-        icon: "info",
-        title: "¡Espera!",
-        text: "Parece que no hay más contenido disponible... ¡Pero no te preocupes! con el tiempo añadiremos más.",
-      });
-    } else {
-      Swal.fire({
-        icon: "info",
-        title: "Stop there!",
-        text: "There appears to be no more content available at this time, but don't worry, more will be added over time!",
-      });
-    }
+  const handleAlertMoreProjects = () => {
+    navigate("/projects")
   };
 
   return (
