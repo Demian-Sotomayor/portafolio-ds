@@ -222,6 +222,10 @@
         left: 5%;
     }
 
+    .start-game-button {
+        width: 11%;
+    }
+
     .estambres-recuperados img {
         width: 110px;
     }
@@ -248,6 +252,10 @@
 @media screen and (max-width: 900px) {
     .button-back-home {
         left: 3%;
+    }
+
+    .start-game-button {
+        width: 13%;
     }
 
     .estambres-recuperados {
@@ -288,6 +296,11 @@
     .button-back-home {
         left: 7%;
     }
+
+    .start-game-button {
+        width: 15%;
+    }
+
     .obstaculo-extra:nth-last-child(1), .obstaculo-extra:nth-last-child(2), .obstaculo-extra:nth-last-child(3), .obstaculo-extra:nth-last-child(4) {
         width: 50px !important;
         height: 35px !important;
@@ -304,6 +317,11 @@
 @media screen and (max-width: 550px) {
     .michi-menu-game {
         width: 45%;
+    }
+
+    .start-game-button {
+        width: 20%;
+        left: 42%;
     }
 
     .estambres-recuperados img {
@@ -342,6 +360,13 @@
         left: 50%;
         width: 40px !important;
         height: 30px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .start-game-button {
+        width: 25%;
+        left: 40%;
     }
 }
 

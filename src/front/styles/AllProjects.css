@@ -2,14 +2,19 @@
     display: flex;
     align-items: center;
     height: 100vh;
-    margin: 0px 30px;
+    margin-left: 30px;
+    padding: 0;
     user-select: none;
 }
 
 .projects-left {
-    background: red;
     min-height: 60vh;
     pointer-events: none;
+}
+
+.projects-images {
+    width: 100%;
+    object-fit: contain;
 }
 
 .projects-right {
@@ -20,4 +25,14 @@
 
 .projects-texts {
     margin: 10px;
+}
+
+.projects-texts h2:hover {
+    text-shadow: 0px 0px 10px var(--light-color);
+    transition: .5s;
+    font-size: 33px;
+}
+
+.projects-texts h2:not(:hover) {
+    transition: .5s;
 }
