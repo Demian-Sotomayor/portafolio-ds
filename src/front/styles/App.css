@@ -32,6 +32,7 @@ body {
     animation-fill-mode: forwards;
     scroll-behavior: smooth;
     overflow: transparent;
+    overflow-x: hidden;
 }
 
 @keyframes fadeInAnimation {

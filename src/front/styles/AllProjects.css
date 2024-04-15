@@ -1,0 +1,23 @@
+.all-projects-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    margin: 0px 30px;
+    user-select: none;
+}
+
+.projects-left {
+    background: red;
+    min-height: 60vh;
+    pointer-events: none;
+}
+
+.projects-right {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.projects-texts {
+    margin: 10px;
+}

@@ -57,14 +57,14 @@ const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
         <img src={michi} alt="" className="michi-menu" />
         <button
             type="button"
-            className="btn-menu"
+            className={`btn-menu ${isActive ? "" : "d-none"}`}
             onClick={handleClickGame}
           >
             {idioma === "esp" ? "¡Ayuda!" : "Help!"}
           </button>
           <button
             type="button"
-            className="btn-menu-projects"
+            className={`btn-menu-projects ${isActive ? "" : "d-none"}`}
             onClick={handleProjects}
           >
             {idioma === "esp" ? "Proyectos" : "Projects"}
