@@ -20,7 +20,7 @@
   position: absolute;
   top: 3%;
   opacity: 80%;
-  left: 3%;
+  left: 1%;
   z-index: -1;
 }
 
@@ -237,6 +237,8 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
 @media screen and (min-height: 920px) {
   .marco-home {
     left: .5%;
+    margin: 0;
+    padding: 0;
   }
 }
 
