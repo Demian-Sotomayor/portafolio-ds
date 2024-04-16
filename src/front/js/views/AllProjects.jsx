@@ -51,8 +51,8 @@ const AllProjects = () => {
             >
               - El Rincón del Vino
               <p className="opacity-50 h6">
-                (Lamentablemente no cuento con imágenes de mejor resolución,
-                ¡Perdón!)
+                {idioma === "esp" ? "(Lamentablemente no cuento con imágenes de mejor resolución, ¡Perdón!)" : "(Unfortunately I don't have better resolution images of this project, sorry!)"}
+
               </p>
             </h3>
             <h3
@@ -75,7 +75,7 @@ const AllProjects = () => {
             >
               - Starwars Blog
             </h3>
-            <h3 className="my-5">- ¡Más próximamente!</h3>
+            <h3 className="my-5">{idioma === "esp" ? "- ¡Más próximamente!" : "- More coming soon!"}</h3>
           </div>
         </div>
       </div>
