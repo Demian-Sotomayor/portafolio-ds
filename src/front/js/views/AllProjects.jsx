@@ -9,7 +9,6 @@ const AllProjects = () => {
   const [idioma, setIdioma] = useState(localStorage.getItem("idioma") || "eng");
   const [previewImage, setPreviewImage] = useState("");
   const [currentProject, setCurrentProject] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const [galleryImages, setGalleryImages] = useState([]);
 
   const handleProjectHover = (projectName) => {
@@ -17,15 +16,9 @@ const AllProjects = () => {
     setPreviewImage(projectsImages[projectName][1]);
   };
 
-  const handlePreview = (projectName) => {
-    setCurrentProject(projectName);
-    setPreviewImage(projectsImages[projectName][1]);
-  };
-
   const handleProjectClick = (projectName) => {
     setCurrentProject(projectName);
     setGalleryImages(Object.values(projectsImages[projectName]));
-    setShowModal(true);
   };
 
   return (
@@ -36,7 +29,7 @@ const AllProjects = () => {
         setIdioma={setIdioma}
         idioma={idioma}
       />
-      <Link to="/" className="button-back-home">
+      <Link to="/" className="button-back-home button-back-home-projects">
         <i className="fa-solid fa-arrow-left me-2"></i>
         {idioma === "esp" ? "Inicio" : "Home"}
       </Link>
@@ -48,63 +41,75 @@ const AllProjects = () => {
 
         <div className="projects-right col-5">
           <div className="projects-texts">
-            <h2
+            <h3
               className="my-5"
               id="project1"
               onMouseEnter={() => handleProjectHover("elRinconDelVino")}
-              onClick={handleProjectClick}
+              onClick={() => handleProjectClick("elRinconDelVino")}
+              data-bs-toggle="modal"
+              data-bs-target="#modalGalleryProjects"
             >
               - El Rincón del Vino
-              <h6 className="opacity-50">
+              <p className="opacity-50 h6">
                 (Lamentablemente no cuento con imágenes de mejor resolución,
                 ¡Perdón!)
-              </h6>
-            </h2>
-            <h2
+              </p>
+            </h3>
+            <h3
               className="my-5"
               id="project2"
               onMouseEnter={() => handleProjectHover("battleship")}
-              onClick={handleProjectClick}
+              onClick={() => handleProjectClick("battleship")}
+              data-bs-toggle="modal"
+              data-bs-target="#modalGalleryProjects"
             >
               - Battleship
-            </h2>
-            <h2
+            </h3>
+            <h3
               className="my-5"
               id="project3"
               onMouseEnter={() => handleProjectHover("starwars")}
-              onClick={handleProjectClick}
+              onClick={() => handleProjectClick("starwars")}
+              data-bs-toggle="modal"
+              data-bs-target="#modalGalleryProjects"
             >
               - Starwars Blog
-            </h2>
-            <h2 className="my-5">- ¡Más próximamente!</h2>
+            </h3>
+            <h3 className="my-5">- ¡Más próximamente!</h3>
           </div>
         </div>
       </div>
 
       {/* --- // MODAL // --- */}
-      {showModal && (
-        <div className="modal" tabIndex="-1" role="dialog">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{currentProject}</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setShowModal(false)}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <div className="gallery">
-                  {galleryImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Image ${index}`} />
-                  ))}
-                </div>
+      <div
+        className="modal modal-projects fade"
+        id="modalGalleryProjects"
+        tabIndex="-1"
+        aria-labelledby="#modalGalleryProjectsLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-projects">
+          <div className="modal-content">
+            <div className="d-flex justify-content-end mx-3 mt-3">
+              <button
+                type="button"
+                className="btn-close-projects"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i className="fa-solid fa-xmark icon-close-modal-projects"></i>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="gallery-projects">
+                {galleryImages.map((image, index) => (
+                  <img key={index} src={image} alt={`Image ${index}`} />
+                ))}
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
