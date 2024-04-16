@@ -11,6 +11,9 @@ const AllProjects = () => {
   const [currentProject, setCurrentProject] = useState(null);
   const [galleryImages, setGalleryImages] = useState([]);
 
+  // ------------- Pendiente imagen preview default, left bajar un poco la img -----------------------------
+  // -------------------------------------------------------------------------------------------------------
+
   const handleProjectHover = (projectName) => {
     setCurrentProject(projectName);
     setPreviewImage(projectsImages[projectName][1]);
@@ -36,7 +39,7 @@ const AllProjects = () => {
 
       <div className="all-projects-container row">
         <div className="projects-left col-7">
-          <img src={previewImage} alt="" className="projects-images" />
+          <img src={currentProject === null ? projectsImages["clickProjects"][1] : previewImage} alt="" className="projects-images" />
         </div>
 
         <div className="projects-right col-5">

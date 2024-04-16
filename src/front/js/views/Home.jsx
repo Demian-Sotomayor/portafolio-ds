@@ -2,6 +2,9 @@ import "../../styles/Home.css";
 import Contact from "../components/Contact.jsx";
 import marcoHome from "../../../assets/Marco.svg";
 
+  // ---------------------------------- Pendiente margen mal a la izquierda --------------------------------
+  // -------------------------------------------------------------------------------------------------------
+
 const Home = ({ idioma }) => {
   return (
     <>

@@ -6,7 +6,7 @@ import michi from "../../../assets/michi.svg";
 import Swal from "sweetalert2";
 // IMÁGENES DE JUEGO
 import { gameImages } from "../../img/images";
-import happy from "../../img/happy-cat.gif";
+import happy from "../../img/happy-cat.gif"
 
 const Game = () => {
   const navigate = useNavigate();
@@ -39,8 +39,8 @@ const Game = () => {
     1: 2000,
     2: 1200,
     3: 800,
-    4: 750,
-    5: 750,
+    4: 700,
+    5: 680,
   };
   const levelSpeedsMobile = {
     1: 1000,
@@ -82,8 +82,7 @@ const Game = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const speedByLevel =
-        window.innerWidth <= 768 ? levelSpeedsMobile : levelSpeeds;
+      const speedByLevel = window.innerWidth <= 768 ? levelSpeedsMobile : levelSpeeds;
       setCurrentSpeed(speedByLevel[level]);
     };
 
@@ -92,7 +91,7 @@ const Game = () => {
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [])
 
   useEffect(() => {
     initializeBalls();
@@ -158,41 +157,25 @@ const Game = () => {
 
     // Condiciones de victoria
     if (level === 1 && ballId === 1) {
-      Swal.fire({
-        title: `${
-          idioma === "esp"
-            ? "¡Primer juguete recuperado!"
-            : "First toy recovered!"
-        }`,
-        allowOutsideClick: false,
-        icon: "success",
-        confirmButtonText: `${
-          idioma === "esp" ? "Siguiente nivel" : "Next level"
-        }`,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Pasar al siguiente nivel
-          setLevel(2);
-          setLevelCompleted(true);
-        }
-      });
+        Swal.fire({
+          title: `${idioma === "esp" ? "¡Primer juguete recuperado!" : "First toy recovered!"}`,
+          allowOutsideClick: false,
+          icon: "success",
+          confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Pasar al siguiente nivel
+            setLevel(2);
+            setLevelCompleted(true);
+          }
+        });
     } else if (level === 2 && ballId === 2) {
       Swal.fire({
-        title: `${
-          idioma === "esp"
-            ? "¡Segundo juguete recuperado!"
-            : "Second toy recovered!"
-        }`,
-        text: `${
-          idioma === "esp"
-            ? "El gatito te mira con admiración..."
-            : "The kitten looks at you with admiration..."
-        }`,
+        title: `${idioma === "esp" ? "¡Segundo juguete recuperado!" : "Second toy recovered!"}`,
+        text: `${idioma === "esp" ? "El gatito te mira con admiración..." : "The kitten looks at you with admiration..."}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: `${
-          idioma === "esp" ? "Siguiente nivel" : "Next level"
-        }`,
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -202,21 +185,11 @@ const Game = () => {
       });
     } else if (level === 3 && ballId === 3) {
       Swal.fire({
-        title: `${
-          idioma === "esp"
-            ? "¡Tercer juguete recuperado!"
-            : "Third toy recovered!"
-        }`,
-        text: `${
-          idioma === "esp"
-            ? "¡El gatito no puede creer tus reflejos!"
-            : "The kitten can't believe your reflexes!!"
-        }`,
+        title: `${idioma === "esp" ? "¡Tercer juguete recuperado!" : "Third toy recovered!"}`,
+        text: `${idioma === "esp" ? "¡El gatito no puede creer tus reflejos!" : "The kitten can't believe your reflexes!!"}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: `${
-          idioma === "esp" ? "Siguiente nivel" : "Next level"
-        }`,
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -226,21 +199,11 @@ const Game = () => {
       });
     } else if (level === 4 && ballId === 4) {
       Swal.fire({
-        title: `${
-          idioma === "esp"
-            ? "¡Cuarto juguete recuperado!"
-            : "Fourth toy recovered!"
-        }`,
-        text: `${
-          idioma === "esp"
-            ? '"¿Por qué hay tanta comida volando?"'
-            : '"Why is there so much food flying around?"'
-        }`,
+        title: `${idioma === "esp" ? "¡Cuarto juguete recuperado!" : "Fourth toy recovered!"}`,
+        text: `${idioma === "esp" ? '"¿Por qué hay tanta comida volando?"' : '"Why is there so much food flying around?"'}`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: `${
-          idioma === "esp" ? "Siguiente nivel" : "Next level"
-        }`,
+        confirmButtonText: `${idioma === "esp" ? "Siguiente nivel" : "Next level"}`,
       }).then((result) => {
         if (result.isConfirmed) {
           // Pasar al siguiente nivel
@@ -250,32 +213,20 @@ const Game = () => {
       });
     } else if (level === 5 && ballId === 5) {
       Swal.fire({
-        title: `${
-          idioma === "esp"
-            ? "¡Victoria! El michi está feliz"
-            : "Victory! The kitten is happy!"
-        }`,
-        text: `${
-          idioma === "esp"
-            ? "Este gatito te apreciará y recordará de por vida... ¡¡Gracias!!"
-            : "This kitten will appreciate and remember you for a lifetime... Thank you!!"
-        }`,
+        title: `${idioma === "esp" ? "¡Victoria! El michi está feliz" : "Victory! The kitten is happy!"}`,
+        text: `${idioma === "esp" ? "Este gatito te apreciará y recordará de por vida... ¡¡Gracias!!" : "This kitten will appreciate and remember you for a lifetime... Thank you!!"}`,
         allowOutsideClick: false,
         html: `<img src=${happy} alt="GIF" width="100px" height="auto" />`,
-        confirmButtonText: `${
-          idioma === "esp" ? "Volver al menú" : "Back to home"
-        }`,
+        confirmButtonText: `${idioma === "esp" ? "Volver al menú" : "Back to home"}`,
         showCancelButton: true,
-        cancelButtonText: `${
-          idioma === "esp" ? "Volver a jugar" : "Play again"
-        }`,
+        cancelButtonText: `${idioma === "esp" ? "Volver a jugar" : "Play again"}`
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/");
+          navigate("/")
         } else {
-          window.location.reload(false);
+          window.location.reload(false)          
         }
-      });
+      })
     }
   };
 
@@ -285,54 +236,39 @@ const Game = () => {
   };
 
   const moveBall = () => {
-    // Mover la pelota a su próxima posición
+    // Mover la pelota a una nueva posición aleatoria
     const newBalls = balls.map((ball) => {
       if (ball.level === level) {
-        // Calcular la nueva posición basada en la velocidad y dirección
-        const deltaX = (Math.random() * 2 - 1) * 25; // Ejemplo de velocidad horizontal
-        const deltaY = (Math.random() * 2 - 1) * 25; // Ejemplo de velocidad vertical
-        const newX = ball.position.x + deltaX;
-        const newY = ball.position.y + deltaY;
-  
-        // Limitar la posición dentro de los límites de la ventana
-        const maxX = window.innerWidth - ballSize;
-        const maxY = window.innerHeight - ballSize;
-        const boundedX = Math.max(0, Math.min(newX, maxX));
-        const boundedY = Math.max(0, Math.min(newY, maxY));
-  
         return {
           ...ball,
-          position: { x: boundedX, y: boundedY },
+          position: {
+            x: Math.random() * (window.innerWidth - 50),
+            y: Math.random() * (window.innerHeight - 50),
+          },
         };
       }
       return ball;
     });
-  
+
     setBalls(newBalls);
   };
 
   const handleBackHome = () => {
     Swal.fire({
       title: `${idioma === "esp" ? "¿Estás seguro?" : "Are you sure?"}`,
-      text: `${
-        idioma === "esp"
-          ? '¡Si clickeaste por error, presiona "no"!'
-          : `If you clicked by mistake, just press "no"!`
-      }`,
+      text: `${idioma === "esp" ? '¡Si clickeaste por error, presiona "no"!' : `If you clicked by mistake, just press "no"!`}`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: `${
-        idioma === "esp" ? "Volver a inicio" : "Back to home"
-      }`,
-      cancelButtonText: "No",
+      confirmButtonText: `${idioma === "esp" ? "Volver a inicio" : "Back to home"}`,
+      cancelButtonText: "No"
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate("/");
+        navigate("/")
       }
     });
-  };
+  }
 
   return (
     <div className="container-game">
@@ -377,35 +313,28 @@ const Game = () => {
       </div>
 
       {/* Renderizar pelotas */}
-      {gameStarted && (
-        <div
-          className="pelotas-container"
-          onClick={(e) => handlePelotasContainerClick(e)}
-        >
-          {balls.map((ball) => {
-            if (ball.level === level) {
-              return (
-                <img
-                  key={ball.id}
-                  src={levelImages[ball.level]} // Usa levelImages para obtener la ruta de la imagen
-                  alt=""
-                  className="estambre-movimiento opacity-75"
-                  style={{
-                    position: "absolute",
-                    left: ball.position?.x ?? "-50%",
-                    top: ball.position?.y ?? "-50%",
-                    width: `${ballSize}px`,
-                    height: `${ballSize}px`,
-                    pointerEvents: "none", // Hacer que la imagen ignore los eventos del mouse
-                  }}
-                />
-              );
-            } else {
-              return null; // No renderizar la pelota si no es del nivel actual
-            }
-          })}
-        </div>
-      )}
+      {gameStarted &&
+        balls.map((ball) => {
+          if (ball.level === level) {
+            return (
+              <img
+                key={ball.id}
+                src={levelImages[ball.level]} // Usa levelImages para obtener la ruta de la imagen
+                alt=""
+                className="estambre-movimiento opacity-75"
+                style={{
+                  left: ball.position?.x ?? "-50%",
+                  top: ball.position?.y ?? "-50%",
+                  width: `${ballSize}px`,
+                  height: `${ballSize}px`
+                }}
+                onClick={() => handleBallClick(ball.id)}
+              />
+            );
+          } else {
+            return null; // No renderizar la pelota si no es del nivel actual
+          }
+        })}
 
       {/* Botón de inicio del juego */}
       {!gameOver && !gameStarted && (

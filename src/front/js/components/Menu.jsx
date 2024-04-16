@@ -6,6 +6,9 @@ import michi from "../../../assets/michi.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+  // ---------------------------------- Pendiente marco width --------------------------------------------
+  // -------------------------------------------------------------------------------------------------------
+
 const Menu = ({ isActive, setIsActive, idioma, setIdioma }) => {
 
   const navigate = useNavigate();
