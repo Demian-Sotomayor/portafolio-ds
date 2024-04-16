@@ -21,7 +21,7 @@ const Contact = ({idioma}) => {
           </button>
 
           <div className="modal-body">
-            <h3 className="text-center">
+            <h3 className="text-center title-modal-contact">
               {idioma === "esp" ? "¡Ésta es mi información de contacto y mis perfiles!" : "This is my contact info and my profiles!"}
 
             </h3>

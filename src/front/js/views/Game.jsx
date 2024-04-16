@@ -42,6 +42,15 @@ const Game = () => {
     4: 650,
     5: 600,
   };
+  const levelSpeedsMobile = {
+    1: 1000,
+    2: 800,
+    3: 600,
+    4: 500,
+    5: 350,
+  };
+  const [currentSpeed, setCurrentSpeed] = useState(levelSpeeds[1]);
+
   // Juguetes por cada nivel
   const levelImages = {
     1: gameImages["juguetesMovimiento"]["estambreNivel1"],
@@ -72,6 +81,19 @@ const Game = () => {
   const ballSize = baseBallSize - (level - 1) * 3;
 
   useEffect(() => {
+    const handleResize = () => {
+      const speedByLevel = window.innerWidth <= 768 ? levelSpeedsMobile : levelSpeeds;
+      setCurrentSpeed(speedByLevel[level]);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+
+  useEffect(() => {
     initializeBalls();
   }, []);
 
@@ -83,13 +105,13 @@ const Game = () => {
       // Iniciar intervalos de movimiento para bolas y obstáculos
       const ballInterval = setInterval(() => {
         moveBall();
-      }, levelSpeeds[level]);
+      }, currentSpeed);
 
       return () => {
         clearInterval(ballInterval);
       };
     }
-  }, [gameStarted, level]);
+  }, [gameStarted, level, currentSpeed]);
 
   useEffect(() => {
     if (firstBallVisible) {
@@ -100,7 +122,7 @@ const Game = () => {
         clearInterval(ballInterval);
       };
     }
-  }, [firstBallVisible, level]);
+  }, [firstBallVisible, level, currentSpeed]);
 
   const initializeBalls = () => {
     // Definir arreglo con bolas de estambre y sus propiedades

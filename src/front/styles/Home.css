@@ -198,6 +198,29 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
       }
   }
 
+@media screen and (max-width:600px) {
+  .social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px;
+  }
+
+  .title-modal-contact {
+    font-size: 22px;
+  } 
+
+  .social-name {
+    margin: 15px 0px 0px;
+    font-size: 19px;
+  }
+
+  .advice-modal {
+    text-align: center;
+    margin-top: 25px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .textos-hero {
     font-size: 35px;
@@ -211,20 +234,3 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
   }
 }
 
-@media screen and (max-width:600px) {
-  .social {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px 0px;
-  }
-
-  .social-name {
-    margin: 15px 0px 0px;
-  }
-
-  .advice-modal {
-    text-align: center;
-    margin-top: 25px;
-  }
-}
