@@ -372,6 +372,12 @@
 
 /* ----- // MEDIA QUERIES (HEIGHT) // ----- */
 
+@media screen and (min-height: 800px) {
+    .marco-menu-game {
+        display: none;
+    }
+}
+
 @media screen and (min-height: 920px) {
     .marco-menu-game {
         display: none;

@@ -278,6 +278,12 @@
 
 /* ----- // MEDIA QUERIES (HEIGHT) // ----- */
 
+@media screen and (min-height: 800px) {
+    .marco-menu {
+        display: none;
+    }
+}
+
 @media screen and (min-height: 920px) {
     .menu-opened {
         height: 100%;
