@@ -149,8 +149,19 @@
 }
 
 /* De quisquilloso para los 380px */
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 425px) {
+    .email-footer {
+        margin-left: -7%;
+    }
+}
 
+@media screen and (max-width: 400px) {
+    .email-footer {
+        margin-left: -9%;
+    }
+}
+
+@media screen and (max-width: 390px) {
     .email-footer {
         margin-left: -12%;
     }

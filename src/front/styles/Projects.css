@@ -105,6 +105,10 @@
     .img-carousel {
         width: 30%;
     }
+
+    .img-carousel:hover {
+        width: 31%;
+    }
 }
 
 @media screen and (max-width: 1000px) {
@@ -115,12 +119,20 @@
     .img-carousel {
         width: 40%;
     }
+    
+    .img-carousel:hover {
+        width: 41%;
+    }
 }
 
 @media screen and (max-width: 700px) {
 
     .img-carousel {
         width: 60%;
+    }
+    
+    .img-carousel:hover {
+        width: 61%;
     }
 
     .carousel-button {
@@ -135,6 +147,10 @@
 
     .img-carousel {
         width: 80%;
+    }
+    
+    .img-carousel:hover {
+        width: 81%;
     }
 
     .carousel-button {
