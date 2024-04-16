@@ -1,32 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/Game.css";
 import marcoMenu from "../../../assets/marco-menu.svg";
 import michi from "../../../assets/michi.svg";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-
-// ESTAMBRES FIJOS (HUD)
-import estambreFijoNivel1 from "../../img/game/con-hilo/bola-estambre-verde.png";
-import estambreFijoNivel2 from "../../img/game/con-hilo/bola-estambre-azul.png";
-import estambreFijoNivel3 from "../../img/game/con-hilo/bola-estambre-morada.png";
-import estambreFijoNivel4 from "../../img/game/con-hilo/bola-estambre-naranja.png";
-import estambreFijoNivel5 from "../../img/game/con-hilo/bola-estambre-roja.png";
-
-// ESTAMBRES DE NIVELES
-import bolaEstambre1 from "../../img/game/sin-hilo/bola-estambre-1-sin-hilo.png";
-import bolaEstambre2 from "../../img/game/sin-hilo/bola-estambre-2-sin-hilo.png";
-import bolaEstambre3 from "../../img/game/sin-hilo/bola-estambre-3-sin-hilo.png";
-import bolaEstambre4 from "../../img/game/sin-hilo/bola-estambre-4-sin-hilo.png";
-import bolaEstambre5 from "../../img/game/sin-hilo/bola-estambre-5-sin-hilo.png";
-
-// OBSTÁCULOS
-import pescadoNivel1 from "../../img/game/pescados/pescado-lvl-1.png";
-import pescadoNivel2 from "../../img/game/pescados/pescado-lvl-2.png";
-import pescadoNivel3 from "../../img/game/pescados/pescado-lvl-3.png";
-import pescadoNivel4 from "../../img/game/pescados/pescado-lvl-4.png";
-import pescadoNivel5 from "../../img/game/pescados/pescado-lvl-5.png";
-
+// IMÁGENES DE JUEGO
+import { gameImages } from "../../img/images";
 import happy from "../../img/happy-cat.gif"
 
 const Game = () => {
@@ -65,19 +44,19 @@ const Game = () => {
   };
   // Juguetes por cada nivel
   const levelImages = {
-    1: bolaEstambre1,
-    2: bolaEstambre2,
-    3: bolaEstambre3,
-    4: bolaEstambre4,
-    5: bolaEstambre5,
+    1: gameImages["juguetesMovimiento"]["estambreNivel1"],
+    2: gameImages["juguetesMovimiento"]["estambreNivel2"],
+    3: gameImages["juguetesMovimiento"]["estambreNivel3"],
+    4: gameImages["juguetesMovimiento"]["estambreNivel4"],
+    5: gameImages["juguetesMovimiento"]["estambreNivel5"],
   };
   // Imágenes de los obstáculos
   const obstacleImages = {
-    1: pescadoNivel1,
-    2: pescadoNivel2,
-    3: pescadoNivel3,
-    4: pescadoNivel4,
-    5: pescadoNivel5,
+    1: gameImages["pescados"]["pescadoNivel1"],
+    2: gameImages["pescados"]["pescadoNivel2"],
+    3: gameImages["pescados"]["pescadoNivel3"],
+    4: gameImages["pescados"]["pescadoNivel4"],
+    5: gameImages["pescados"]["pescadoNivel5"],
   };
   // Tamaños de los obstáculos por nivel
   const obstacleSizes = {
@@ -252,42 +231,59 @@ const Game = () => {
     setBalls(newBalls);
   };
 
+  const handleBackHome = () => {
+    Swal.fire({
+      title: `${idioma === "esp" ? "¿Estás seguro?" : "Are you sure?"}`,
+      text: `${idioma === "esp" ? '¡Si clickeaste por error, presiona "no"!' : `If you clicked by mistake, just press "no"!`}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `${idioma === "esp" ? "Volver a inicio" : "Back to home"}`,
+      cancelButtonText: "No"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/")
+      }
+    });
+  }
+
   return (
     <div className="container-game">
-      <Link to="/" className="button-back-home">
+      <button className="button-back-home" onClick={handleBackHome}>
         <i className="fa-solid fa-arrow-left me-2"></i>
         {idioma === "esp" ? "Inicio" : "Home"}
-      </Link>
+      </button>
       <img src={michi} alt="" className="michi-menu-game" />
       <img src={marcoMenu} alt="" className="marco-menu-game" />
 
       <div className="estambres-recuperados">
         <img
-          src={estambreFijoNivel1}
+          src={gameImages["juguetesFijos"]["estambreFijoNivel1"]}
           alt=""
           className={recoveredToys[1] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(1)}
         />
         <img
-          src={estambreFijoNivel2}
+          src={gameImages["juguetesFijos"]["estambreFijoNivel2"]}
           alt=""
           className={recoveredToys[2] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(2)}
         />
         <img
-          src={estambreFijoNivel3}
+          src={gameImages["juguetesFijos"]["estambreFijoNivel3"]}
           alt=""
           className={recoveredToys[3] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(3)}
         />
         <img
-          src={estambreFijoNivel4}
+          src={gameImages["juguetesFijos"]["estambreFijoNivel4"]}
           alt=""
           className={recoveredToys[4] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(4)}
         />
         <img
-          src={estambreFijoNivel5}
+          src={gameImages["juguetesFijos"]["estambreFijoNivel5"]}
           alt=""
           className={recoveredToys[5] ? "opacity-75" : "opacity-25"}
           onClick={() => handleBallClick(5)}

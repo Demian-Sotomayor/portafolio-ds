@@ -1,5 +1,5 @@
 import "../../styles/About.css";
-import demianProfile from "../../img/portafolio/demian.jpg";
+import { projectsImages } from "../../img/images";
 
 const About = ({ idioma }) => {
   return (
@@ -9,7 +9,7 @@ const About = ({ idioma }) => {
       </h1>
       <div className="img-container">
         <img
-          src={demianProfile}
+          src={projectsImages["profile"][1]}
           alt="demian-profile"
           className="demian-profile"
         />
