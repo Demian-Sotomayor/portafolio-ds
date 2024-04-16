@@ -234,3 +234,9 @@ con resoluciones más grandes en navegador, no me chocan los cambios que hago y 
   }
 }
 
+@media screen and (min-height: 920px) {
+  .marco-home {
+    left: .5%;
+  }
+}
+

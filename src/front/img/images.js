@@ -27,6 +27,10 @@ export const projectsImages = {
 
     profile: {
         1: "https://res.cloudinary.com/db7vyckvo/image/upload/v1713225386/projects-portfolio/jdwk12yoo4z7haxagsww.jpg",
+    },
+
+    clickProjects: {
+        1: "https://res.cloudinary.com/db7vyckvo/image/upload/v1713242163/projects-portfolio/bzwkddwatqayi7hc1uul.png",
     }
 }
 
