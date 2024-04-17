@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+.arrow-game {
+    width: 100px;
+}
+
 /* ----- // ESTAMBRES RECUPERADOS (HUD) // ----- */
 
 .estambres-recuperados {
@@ -40,6 +44,10 @@
 .estambre-movimiento {
     width: 50px;
     position: absolute;
+}
+
+.estambre-movimiento:not(:hover) {
+    transition: .1s;
 }
 
 .ball-disappear {

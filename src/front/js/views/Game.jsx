@@ -39,15 +39,15 @@ const Game = () => {
     1: 2000,
     2: 1200,
     3: 800,
-    4: 700,
-    5: 680,
+    4: 750,
+    5: 700,
   };
   const levelSpeedsMobile = {
     1: 1000,
     2: 800,
     3: 600,
-    4: 500,
-    5: 350,
+    4: 550,
+    5: 500,
   };
   const [currentSpeed, setCurrentSpeed] = useState(levelSpeeds[1]);
 
