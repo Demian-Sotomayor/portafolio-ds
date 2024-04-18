@@ -42,8 +42,8 @@ const About = ({ idioma }) => {
             <p>
               My path into programming began in early 2022, when I was just 17
               years old. I started studying the fundamentals and delving into
-              web design using HTML5 and CSS3. As I gained momentum, I dug
-              deeper and continued with JavaScript.
+              web design using HTML5 and CSS3. As I progressed, I delved deeper
+              into and continued with JavaScript.
             </p>
             <p>
               Upon discovering my passion for this field, I continued studying
